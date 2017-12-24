@@ -13,7 +13,7 @@ public class PointTest {
         Point b = new Point(0, 2);
         double actual = a.distanceTo(b);
         double expected = 2d;
-        assertThat(expected, is(actual));
+        assertThat(actual, is(expected));
     }
 
 }

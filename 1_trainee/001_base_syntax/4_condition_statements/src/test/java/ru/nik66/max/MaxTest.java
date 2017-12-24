@@ -37,4 +37,33 @@ public class MaxTest {
         assertThat(actual, is(expected));
     }
 
+    @Test
+    public void whenFirstOfThreeIsMaxThenReturnThatOne() throws Exception {
+        Max max = new Max();
+
+        int actual = max.max(1, 0, 0);
+        int expected = 1;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void whenSecondOfThreeIsMaxThenReturnThatOne() throws Exception {
+        Max max = new Max();
+
+        int actual = max.max(0, 1, 0);
+        int expected = 1;
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void whenThirdOfThreeIsMaxThenReturnThatOne() throws Exception {
+        Max max = new Max();
+
+        int actual = max.max(0, 0, 1);
+        int expected = 1;
+
+        assertThat(actual, is(expected));
+    }
 }

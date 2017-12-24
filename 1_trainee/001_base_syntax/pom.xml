@@ -13,5 +13,6 @@
     <module>1_jvm_byte_code</module>
     <module>3_data_type</module>
     <module>4_condition_statements</module>
+    <module>5_loops</module>
   </modules>
 </project>

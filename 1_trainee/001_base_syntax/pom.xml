@@ -14,5 +14,6 @@
     <module>3_data_type</module>
     <module>4_condition_statements</module>
     <module>5_loops</module>
+    <module>6_arrays</module>
   </modules>
 </project>

@@ -8,7 +8,7 @@ import static org.hamcrest.core.Is.is;
 public class SquareTest {
 
     @Test
-    public void whenThen() throws Exception {
+    public void whenBoundIsTwoThenReturnArrayWithTwoPowElements() throws Exception {
         Square square = new Square();
 
         int[] actual = square.calculate(2);

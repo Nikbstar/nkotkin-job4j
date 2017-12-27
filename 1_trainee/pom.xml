@@ -11,5 +11,6 @@
   </parent>
   <modules>
     <module>001_base_syntax</module>
+    <module>002_oop</module>
   </modules>
 </project>

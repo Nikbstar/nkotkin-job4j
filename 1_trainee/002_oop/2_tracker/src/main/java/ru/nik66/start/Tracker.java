@@ -41,18 +41,18 @@ public class Tracker {
     }
 
     public Item[] findByName(String name) {
+        // I don't like this shit...
         Item[] tmpItems = new Item[this.position];
-        int iterator = 0;
-        for (Item item : this.items) {
-            if (item != null && this.contains(item.getName(), name)) {
-                tmpItems[iterator++] = item;
+        int index = 0;
+        for (int iterator = 0; iterator < tmpItems.length; iterator++) {
+            if (this.items[iterator] != null && this.contains(this.items[iterator].getName(), name)) {
+                tmpItems[index++] = this.items[iterator];
             }
         }
-        Item[] result = new Item[iterator];
-        for (int index = 0; index < result.length; index++) {
-            result[index] = tmpItems[index];
+        Item[] result = new Item[index];
+        for (int iterator = 0; iterator < result.length; iterator++) {
+            result[iterator] = tmpItems[iterator];
         }
-        tmpItems = null;
         return result;
     }
 

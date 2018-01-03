@@ -12,7 +12,7 @@ public class Tracker {
     }
 
     public void replace(Item item) {
-        for (int iterator = 0; iterator < this.items.length; iterator++) {
+        for (int iterator = 0; iterator < this.position; iterator++) {
             if (this.items[iterator] != null && this.items[iterator].getId().equals(item.getId())) {
                 this.items[iterator] = item;
                 break;
@@ -20,16 +20,19 @@ public class Tracker {
         }
     }
 
-    public void delete(String id) {
-        for (int iterator = 0; iterator < this.items.length; iterator++) {
+    public boolean delete(String id) {
+        boolean result = false;
+        for (int iterator = 0; iterator < this.position; iterator++) {
             if (this.items[iterator].getId().equals(id)) {
                 if (iterator < this.position) {
                     System.arraycopy(this.items, iterator + 1, this.items, iterator, this.position - iterator);
                 }
                 this.position--;
+                result = true;
                 break;
             }
         }
+        return result;
     }
 
     public Item[] findAll() {
@@ -43,16 +46,21 @@ public class Tracker {
     public Item[] findByName(String name) {
         // I don't like this shit...
         Item[] tmpItems = new Item[this.position];
+        Item[] result = null;
         int index = 0;
+
         for (int iterator = 0; iterator < tmpItems.length; iterator++) {
             if (this.items[iterator] != null && this.contains(this.items[iterator].getName(), name)) {
                 tmpItems[index++] = this.items[iterator];
             }
         }
-        Item[] result = new Item[index];
-        for (int iterator = 0; iterator < result.length; iterator++) {
-            result[iterator] = tmpItems[iterator];
+        if (index > 0) {
+            result = new Item[index];
+            for (int iterator = 0; iterator < result.length; iterator++) {
+                result[iterator] = tmpItems[iterator];
+            }
         }
+
         return result;
     }
 

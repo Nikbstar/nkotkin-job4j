@@ -67,11 +67,12 @@ public class StartUI {
     private void showAllItems() {
         System.out.println("~~~~~ Show All Items ~~~~~");
         for (Item item : this.tracker.findAll()) {
-            System.out.printf("id: %s\tname: %s\tdescription: %s\t date: %s\n",
+            System.out.printf("id: %s\tname: %s\tdescription: %s\tdate: %s%s",
                     item.getId(),
                     item.getName(),
                     item.getDescription(),
-                    item.getCreate());
+                    item.getCreate(),
+                    System.lineSeparator());
             System.out.println("=================================================");
         }
 
@@ -102,27 +103,29 @@ public class StartUI {
         if (item == null) {
             System.out.println("~~~~~ Item not found! ~~~~~");
         } else {
-            System.out.printf("id: %s\tname: %s\tdescription: %s\t date: %s\n",
+            System.out.printf("id: %s\tname: %s\tdescription: %s\tdate: %s%s",
                     item.getId(),
                     item.getName(),
                     item.getDescription(),
-                    item.getCreate());
+                    item.getCreate(),
+                    System.lineSeparator());
             System.out.println("=================================================");
         }
     }
 
     private void findByName() {
-        System.out.println("~~~~~ Find Item By Id ~~~~~");
+        System.out.println("~~~~~ Find Item By Name ~~~~~");
         Item[] items = this.tracker.findByName(this.input.ask("Enter item name: "));
         if (items == null) {
             System.out.println("~~~~~ Items not found! ~~~~~");
         } else {
             for (Item item : items) {
-                System.out.printf("id: %s\tname: %s\tdescription: %s\t date: %s\n",
+                System.out.printf("id: %s\tname: %s\tdescription: %s\tdate: %s%s",
                         item.getId(),
                         item.getName(),
                         item.getDescription(),
-                        item.getCreate());
+                        item.getCreate(),
+                        System.lineSeparator());
                 System.out.println("=================================================");
             }
         }

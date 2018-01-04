@@ -44,6 +44,8 @@ public class PaintTest {
                 .append("+++++++").append(eol)
                 .append(eol)
                 .toString();
+        assertThat(actual, is(expected));
+        System.setOut(System.out);
     }
 
 }

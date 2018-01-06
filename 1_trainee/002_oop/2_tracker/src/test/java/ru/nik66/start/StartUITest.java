@@ -72,7 +72,7 @@ public class StartUITest {
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -86,7 +86,7 @@ public class StartUITest {
                 .append("description: ").append(this.first.getDescription()).append('\t')
                 .append("date: ").append(this.first.getCreate()).append(this.EOL)
                 .append("=================================================").append(this.EOL)
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -104,7 +104,7 @@ public class StartUITest {
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -118,7 +118,7 @@ public class StartUITest {
                 .append("description: ").append(this.first.getDescription()).append('\t')
                 .append("date: ").append(this.first.getCreate()).append(this.EOL)
                 .append("=================================================").append(this.EOL)
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -136,7 +136,7 @@ public class StartUITest {
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -146,7 +146,7 @@ public class StartUITest {
                 .append("6. Exit").append(this.EOL)
                 .append("~~~~~ Find Item By Id ~~~~~").append(this.EOL)
                 .append("~~~~~ Item not found! ~~~~~").append(this.EOL)
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -164,7 +164,7 @@ public class StartUITest {
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -178,7 +178,7 @@ public class StartUITest {
                 .append("description: ").append(this.first.getDescription()).append('\t')
                 .append("date: ").append(this.first.getCreate()).append(this.EOL)
                 .append("=================================================").append(this.EOL)
-                .append("~~~~~ Menu ~~~~~").append(this.EOL)
+                .append("~~~~~ MenuTracker ~~~~~").append(this.EOL)
                 .append("0. Add new item.").append(this.EOL)
                 .append("1. Show all items.").append(this.EOL)
                 .append("2. Edit items.").append(this.EOL)
@@ -189,6 +189,5 @@ public class StartUITest {
                 .toString();
         assertThat(actual, is(expected));
     }
-
 
 }

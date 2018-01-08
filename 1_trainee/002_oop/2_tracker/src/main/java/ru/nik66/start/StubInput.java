@@ -10,6 +10,12 @@ public class StubInput implements Input {
         return this.answers[this.position++];
     }
 
+    @Override
+    public int ask(String question, int[] range) {
+        //throw new UnsupportedOperationException("Unsupported operation");
+        return Integer.valueOf(this.answers[this.position++]);
+    }
+
     public StubInput(String[] answers) {
         this.answers = answers;
     }

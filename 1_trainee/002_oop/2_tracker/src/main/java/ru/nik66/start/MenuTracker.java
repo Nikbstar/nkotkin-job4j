@@ -31,17 +31,18 @@ class EditItem implements UserAction {
 
 public class MenuTracker {
 
-    public static final int ADD = 0;
-    public static final int ALL = 1;
+    private static final int ADD = 0;
+    private static final int ALL = 1;
     public static final int EDIT = 2;
-    public static final int DELETE = 3;
-    public static final int ID = 4;
-    public static final int NAME = 5;
+    private static final int DELETE = 3;
+    private static final int ID = 4;
+    private static final int NAME = 5;
     public static final int EXIT = 6;
+    private static final int ACTIONS = 7;
 
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[7];
+    private UserAction[] actions = new UserAction[ACTIONS];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -72,6 +73,10 @@ public class MenuTracker {
                 System.out.println(action.info());
             }
         }
+    }
+
+    public UserAction[] getActions() {
+        return this.actions;
     }
 
     private class AddItem implements UserAction {

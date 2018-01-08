@@ -2,6 +2,7 @@ package ru.nik66.start;
 
 public class StartUI {
 
+    private int[] range;
     private final Input input;
     private final Tracker tracker;
 
@@ -12,18 +13,23 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.init();
         int key;
+
+        menu.init();
+        this.range = new int[menu.getActions().length];
+        for (int i = 0; i < range.length; i++) {
+            range[i] = menu.getActions()[i].key();
+        }
 
         do {
             menu.show();
-            key = Integer.parseInt(input.ask("Select: "));
+            key = input.ask("Select: ", range);
             menu.select(key);
         } while (key != MenuTracker.EXIT);
     }
 
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 
 }

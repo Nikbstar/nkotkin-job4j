@@ -17,22 +17,14 @@ public class Bishop extends Figure {
             throw new ImpossibleMoveException("Wrong way for the Bishop.");
         } else {
             result = new Cell[Math.abs(this.position.getX() - dest.getX())];
-            if ((this.position.getX() > dest.getX()) && (this.position.getY() > dest.getY())) {
-                for (int i = 0; i < result.length; i++) {
-                    result[i] = new Cell(this.position.getX() - i - 1, this.position.getY() - i - 1);
-                }
-            } else if ((this.position.getX() > dest.getX()) && (this.position.getY() < dest.getY())) {
-                for (int i = 0; i < result.length; i++) {
-                    result[i] = new Cell(this.position.getX() - i - 1, this.position.getY() + i + 1);
-                }
-            } else if ((this.position.getX() < dest.getX()) && (this.position.getY() < dest.getY())) {
-                for (int i = 0; i < result.length; i++) {
-                    result[i] = new Cell(this.position.getX() + i + 1, this.position.getY() + i + 1);
-                }
-            } else if ((this.position.getX() < dest.getX()) && (this.position.getY() > dest.getY())) {
-                for (int i = 0; i < result.length; i++) {
-                    result[i] = new Cell(this.position.getX() + i + 1, this.position.getY() - i - 1);
-                }
+            int rowOffset = (this.position.getX() < dest.getX()) ? 1 : -1;
+            int colOffset = (this.position.getY() < dest.getY()) ? 1 : -1;
+            int x = this.position.getX() + rowOffset;
+            int y = this.position.getY() + colOffset;
+            for (int i = 0; i < result.length; i++) {
+                result[i] = new Cell(x, y);
+                x += rowOffset;
+                y += colOffset;
             }
         }
         return result;

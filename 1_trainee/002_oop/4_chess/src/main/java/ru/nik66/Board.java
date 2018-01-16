@@ -7,10 +7,12 @@ import ru.nik66.figures.Figure;
 
 public class Board {
 
-    public static final int BOARD_X = 8;
-    public static final int BOARD_Y = 8;
+    public static final int ROW_2 = 6;
+    public static final int ROW_7 = 1;
+    public static final int ROWS = 8;
+    public static final int COLUMNS = 8;
 
-    public Figure[][] figures = new Figure[BOARD_X][BOARD_Y];
+    public Figure[][] figures = new Figure[ROWS][COLUMNS];
 
     public boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
         if (this.figures[source.getX()][source.getY()] == null) {

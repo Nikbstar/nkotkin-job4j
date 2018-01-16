@@ -22,8 +22,8 @@ public class Cell {
         if (x < 0) {
             x = 0;
         }
-        if (x > Board.BOARD_X - 1) {
-            x = Board.BOARD_X - 1;
+        if (x > Board.ROWS - 1) {
+            x = Board.ROWS - 1;
         }
         this.x = x;
     }
@@ -32,8 +32,8 @@ public class Cell {
         if (y < 0) {
             y = 0;
         }
-        if (y > Board.BOARD_Y - 1) {
-            y = Board.BOARD_Y - 1;
+        if (y > Board.COLUMNS - 1) {
+            y = Board.COLUMNS - 1;
         }
         this.y = y;
     }

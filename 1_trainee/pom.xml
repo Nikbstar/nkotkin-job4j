@@ -12,5 +12,6 @@
   <modules>
     <module>001_base_syntax</module>
     <module>002_oop</module>
+    <module>003_collections</module>
   </modules>
 </project>

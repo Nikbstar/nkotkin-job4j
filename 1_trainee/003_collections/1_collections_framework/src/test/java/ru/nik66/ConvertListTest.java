@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertThat;
@@ -41,6 +42,17 @@ public class ConvertListTest {
     public void whenConvertToArray() {
         int[][] actual = convert.toArray(list, 3);
         int[][] expected = {{1, 2, 3}, {4, 5, 6}, {7, 0, 0}};
+
+        assertThat(actual, is(expected));
+    }
+
+    @Test
+    public void whenConvertListOfArraysToList() {
+        List<int[]> ints = new ArrayList<>();
+        ints.add(new int[]{1, 2});
+        ints.add(new int[]{3, 4, 5, 6});
+        List<Integer> actual = convert.convert(ints);
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         assertThat(actual, is(expected));
     }

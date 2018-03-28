@@ -1,5 +1,6 @@
 package ru.nik66.start;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleInput implements Input {
@@ -13,16 +14,9 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         int key = Integer.valueOf(this.ask(question));
-        boolean exist = false;
-        for (int value : range) {
-            if (value == key) {
-                exist = true;
-                break;
-            }
-        }
-        if (exist) {
+        if (range.contains(key)) {
             return key;
         } else {
             throw new MenuOutException("Out of menu range.");

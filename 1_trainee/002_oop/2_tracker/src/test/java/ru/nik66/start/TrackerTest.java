@@ -9,6 +9,9 @@ import ru.nik66.models.Bug;
 import ru.nik66.models.Item;
 import ru.nik66.models.Task;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TrackerTest {
 
     @Test
@@ -27,8 +30,8 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Task task = new Task("name", "description", 1L);
         tracker.add(task);
-        Item[] actual = tracker.findAll();
-        Item[] expected = {task};
+        List<Item> actual = tracker.findAll();
+        List<Item> expected = Arrays.asList(task);
 
         assertThat(actual, is(expected));
     }
@@ -55,8 +58,8 @@ public class TrackerTest {
         tracker.add(task);
         tracker.add(bug);
         tracker.delete(task.getId());
-        Item[] actual = tracker.findAll();
-        Item[] expected = {bug};
+        List<Item> actual = tracker.findAll();
+        List<Item> expected = Arrays.asList(bug);
 
         assertThat(actual, is(expected));
     }
@@ -69,8 +72,8 @@ public class TrackerTest {
         tracker.add(task);
         tracker.add(bug);
         tracker.delete(bug.getId());
-        Item[] actual = tracker.findAll();
-        Item[] expected = {task};
+        List<Item> actual = tracker.findAll();
+        List<Item> expected = Arrays.asList(task);
 
         assertThat(actual, is(expected));
     }
@@ -84,8 +87,8 @@ public class TrackerTest {
         tracker.add(task);
         tracker.add(task1);
         tracker.add(task2);
-        Item[] actual = tracker.findByName("tt");
-        Item[] expected = {task, task1};
+        List<Item> actual = tracker.findByName("tt");
+        List<Item> expected = Arrays.asList(task, task1);
 
         assertThat(actual, is(expected));
     }

@@ -7,6 +7,9 @@ import ru.nik66.models.Item;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -33,10 +36,11 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() throws Exception {
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
+        List<String> answers = Arrays.asList("0", "test name", "desc", "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
 
-        String actual = this.tracker.findAll()[1].getName();
+        String actual = this.tracker.findAll().get(1).getName();
         String expected = "test name";
 
         assertThat(actual, is(expected));
@@ -44,10 +48,11 @@ public class StartUITest {
 
     @Test
     public void whenUserEditItemThenItemEdited() throws Exception {
-        Input input = new StubInput(new String[]{"2", this.first.getId(), "edited name", "desc", "6"});
+        List<String> answers = Arrays.asList("2", this.first.getId(), "edited name", "desc", "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
 
-        String actual = this.tracker.findAll()[0].getName();
+        String actual = this.tracker.findAll().get(0).getName();
         String expected = "edited name";
 
         assertThat(actual, is(expected));
@@ -57,10 +62,11 @@ public class StartUITest {
     public void whenUserDeleteItemThenItOneDeleted() throws Exception {
         Item second = new Item("second", "desc", 1L);
         this.tracker.add(second);
-        Input input = new StubInput(new String[]{"3", this.first.getId(), "6"});
+        List<String> answers = Arrays.asList("3", this.first.getId(), "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
 
-        String actual = this.tracker.findAll()[0].getName();
+        String actual = this.tracker.findAll().get(0).getName();
         String expected = "second";
 
         assertThat(actual, is(expected));
@@ -68,7 +74,8 @@ public class StartUITest {
 
     @Test
     public void whenUserSelectShowAllItemsThenConsolePrintItemsList() throws Exception {
-        Input input = new StubInput(new String[] {"1", "6"});
+        List<String> answers = Arrays.asList("1", "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
@@ -100,7 +107,8 @@ public class StartUITest {
 
     @Test
     public void whenUserFindItemByIdThenConsolePrintThisItem() throws Exception {
-        Input input = new StubInput(new String[]{"4", this.first.getId(), "6"});
+        List<String> answers = Arrays.asList("4", this.first.getId(), "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
@@ -132,7 +140,8 @@ public class StartUITest {
 
     @Test
     public void whenUserInputWrongIdThenConsolePrintThatItemNotFound() throws Exception {
-        Input input = new StubInput(new String[]{"4", "1", "6"});
+        List<String> answers = Arrays.asList("4", "1", "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()
@@ -160,7 +169,8 @@ public class StartUITest {
 
     @Test
     public void whenUserInputPartOfNameThenConsolePrintItemsListWithSimilarNames() throws Exception {
-        Input input = new StubInput(new String[]{"5", "fir", "6"});
+        List<String> answers = Arrays.asList("5", "fir", "6");
+        Input input = new StubInput(answers);
         new StartUI(input, this.tracker).init();
         String actual = this.out.toString();
         String expected = new StringBuilder()

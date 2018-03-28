@@ -1,8 +1,11 @@
 package ru.nik66.start;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
 
-    private int[] range;
+    private List<Integer> range;
     private final Input input;
     private final Tracker tracker;
 
@@ -16,9 +19,9 @@ public class StartUI {
         int key;
 
         menu.init();
-        this.range = new int[menu.getActions().length];
-        for (int i = 0; i < range.length; i++) {
-            range[i] = menu.getActions()[i].key();
+        this.range = new ArrayList<>();
+        for (UserAction action : menu.getActions()) {
+            this.range.add(action.key());
         }
 
         do {

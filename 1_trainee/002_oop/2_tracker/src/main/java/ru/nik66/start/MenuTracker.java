@@ -2,6 +2,9 @@ package ru.nik66.start;
 
 import ru.nik66.models.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class EditItem extends BaseAction {
 
     protected EditItem(int key, String name) {
@@ -32,13 +35,10 @@ public class MenuTracker {
     private static final int ID = 4;
     private static final int NAME = 5;
     public static final int EXIT = 6;
-    private static final int ACTIONS = 7;
-
-    private int position = ACTIONS;
 
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[ACTIONS];
+    private List<UserAction> actions = new ArrayList<>();
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -47,13 +47,13 @@ public class MenuTracker {
 
     public void init() {
         // inner nonstatic class
-        this.actions[ADD] = this.new AddItem(ADD, "Add new item.");
+        this.actions.add(this.new AddItem(ADD, "Add new item."));
         // inner static class
-        this.actions[ALL] = new MenuTracker.ShowItems(ALL, "Show all items.");
+        this.actions.add(new MenuTracker.ShowItems(ALL, "Show all items."));
         // outer class
-        this.actions[EDIT] = new EditItem(EDIT, "Edit items.");
+        this.actions.add(new EditItem(EDIT, "Edit items."));
         // anonymous class
-        this.actions[DELETE] = new BaseAction(DELETE, "Delete item.") {
+        this.actions.add(new BaseAction(DELETE, "Delete item.") {
             @Override
             public void execute(Input input, Tracker tracker) {
                 System.out.println("~~~~~ Delete Item ~~~~~");
@@ -61,14 +61,14 @@ public class MenuTracker {
                     System.out.println("~~~~~ Item not found! ~~~~~");
                 }
             }
-        };
-        this.actions[ID] = this.new FindById(ID, "Find item by id.");
-        this.actions[NAME] = this.new FindByName(NAME, "Find items by name.");
-        this.actions[EXIT] = this.new Exit(EXIT, "Exit");
+        });
+        this.actions.add(this.new FindById(ID, "Find item by id."));
+        this.actions.add(this.new FindByName(NAME, "Find items by name."));
+        this.actions.add(this.new Exit(EXIT, "Exit"));
     }
 
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
     public void show() {
@@ -80,7 +80,7 @@ public class MenuTracker {
         }
     }
 
-    public UserAction[] getActions() {
+    public List<UserAction> getActions() {
         return this.actions;
     }
 
@@ -158,8 +158,8 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("~~~~~ Find Item By Name ~~~~~");
-            Item[] items = tracker.findByName(input.ask("Enter item name: "));
-            if (items == null) {
+            List<Item> items = tracker.findByName(input.ask("Enter item name: "));
+            if (items.size() == 0) {
                 System.out.println("~~~~~ Items not found! ~~~~~");
             } else {
                 for (Item item : items) {

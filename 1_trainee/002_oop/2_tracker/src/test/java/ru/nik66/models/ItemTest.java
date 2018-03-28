@@ -8,7 +8,7 @@ import static org.hamcrest.core.Is.is;
 public class ItemTest {
 
     @Test
-    public void whenCreateTaskAndGetNameThenReturnTaskName() throws Exception {
+    public void whenCreateTaskAndGetNameThenReturnTaskName() {
         Task task = new Task("TaskName", "", 1L);
 
         String actual = task.getName();

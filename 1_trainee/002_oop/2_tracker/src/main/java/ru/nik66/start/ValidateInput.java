@@ -1,5 +1,7 @@
 package ru.nik66.start;
 
+import java.util.List;
+
 public class ValidateInput implements Input {
 
     private final Input input;
@@ -14,7 +16,7 @@ public class ValidateInput implements Input {
     }
 
     @Override
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         boolean invalid = true;
         int value = -1;
         do {

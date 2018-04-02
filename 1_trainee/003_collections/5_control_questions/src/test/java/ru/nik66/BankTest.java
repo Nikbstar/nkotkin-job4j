@@ -1,16 +1,21 @@
+package ru.nik66;
+
 import org.junit.Before;
 import org.junit.Test;
+import ru.nik66.Account;
+import ru.nik66.Bank;
+import ru.nik66.User;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class BankTest {
-    Bank bank;
-    User user1;
-    User user2;
-    Account acc1;
-    Account acc2;
-    Account acc3;
+    private Bank bank;
+    private User user1;
+    private User user2;
+    private Account acc1;
+    private Account acc2;
+    private Account acc3;
 
     @Before
     public void initialize() {

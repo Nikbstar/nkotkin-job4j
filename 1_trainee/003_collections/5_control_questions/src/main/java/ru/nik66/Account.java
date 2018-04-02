@@ -1,3 +1,5 @@
+package ru.nik66;
+
 import java.util.Objects;
 
 public class Account {

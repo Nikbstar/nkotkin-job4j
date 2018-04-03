@@ -82,6 +82,7 @@
 
   <modules>
     <module>1_trainee</module>
+    <module>2_junior</module>
   </modules>
 
 </project>

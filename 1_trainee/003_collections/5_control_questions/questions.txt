@@ -11,21 +11,25 @@
     -- ArrayList
     -- LinkedList
     i Map
-    // TODO
+    - i SortedMap
+    -- TreeMap
+    - AbstractMap
+    -- HashMap
+    ---LinkedHashMap
 
 +0. Назовите основные методы интерфейса Collections
-    int size()
-    boolean isEmpty()
-    boolean contains(Object o)
-    Iterator<E> iterator()
-    Object[] toArray()
-    boolean add(E e)
-    boolean remove(Object o)
+    !int size()
+    !boolean isEmpty()
+    !boolean contains(Object o)
+    !Iterator<E> iterator()
+    !Object[] toArray()
+    !boolean add(E e)
+    !boolean remove(Object o)
     boolean containsAll(Collection<?> c)
     boolean addAll(Collection<? extends E> c)
     boolean removeAll(Collection<?> c)
     boolean retainAll(Collection<?> c)
-    void clear()
+    !void clear()
     boolean equals(Object o)
     int hashCode()
 
@@ -76,6 +80,8 @@
     сет это список ключей от мапы.
 
 +9. Как задается порядок следования объектов в коллекции, как отсортировать коллекцию?
+    Порядок задается либо естественным следованием элементов (Natural order),
+        либо объектом, реализующим интерфейс сравнения Comparator.
     Если объекты коллекции поддерживают интерфейс Comparable, то через Collections.sort(collection);
     Если нет, то у коллекции вызвать метод sort и передать ему Comparator в качестве аргумента.
     через Comparable или Comparator.
@@ -105,16 +111,18 @@
     Объекты всех коллекций в названии которых есть Hash... должны иметь hashcode и equals.
 
 +13. Какие есть способы перебора всех элементов List?
-    foreach
-    iterator
-    listIterator
+    - через index (fori, while)
+    - через iterator (while)
+    - foreach
 
 +14. Как реализован цикл foreach?
     Через iterator (Если коллекция экстендится от iterable, то мы можем перебирать элементы этой коллекции форичем)
 
 +15. В чем разница между Iterator и ListIterator?
-    Iterator идет только от начала до конца в одном направлении и может удалять
-    ListIterator может двигаться как вперед так и назад. Так же может удалять, добавлять и перезаписывать элементы.
+    - List может быть использован только для перебора коллекций List, iterator для любых.
+    - Iterator идет только от начала до конца в одном направлении и может удалять
+    ListIterator может двигаться как вперед так и назад.
+    - Так же ListIterator может удалять, добавлять и перезаписывать элементы.
 
 +16. Как происходит удаление элементов из ArrayList?
     Перекидывание элемента в конец массива путем смещения всех последующих элементов, а затем уменьшение поля size на 1.

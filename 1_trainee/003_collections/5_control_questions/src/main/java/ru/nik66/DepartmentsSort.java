@@ -1,85 +1,64 @@
 package ru.nik66;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.util.Comparator;
 
+/**
+ * Deportaments sort.
+ * Отсортировать департаменты [#34352]
+ */
 public class DepartmentsSort {
 
-    private final List<String> values;
+    private final String[] values;
 
     public DepartmentsSort(String[] values) {
-        this.values = new ArrayList<>();
-        // Пропускаем повторяющиеся депортаменты.
-        for (int i = 0; i < values.length; i++) {
-            if (!checkValue(values[i], values, i + 1)) {
-                this.values.add(values[i]);
+        Set<String> tmp = new HashSet<>(Arrays.asList(values));
+        for (String value : values) {
+            StringBuilder sb = new StringBuilder();
+            String[] separate = value.split("\\\\");
+            sb.append(separate[0]);
+            tmp.add(sb.toString());
+            for (int i = 1; i < separate.length - 1; i++) {
+                sb.append('\\').append(separate[i]);
+                tmp.add(sb.toString());
             }
         }
+        this.values = tmp.toArray(new String[tmp.size()]);
     }
 
-    // Ищем строки с подстрокой.
-    // Метод работает только с отсортированным массивом (как в задании),
-    // если массив неотсортирован, то нужно проходить по всему массиву, пропуская position.
-    private boolean checkValue(String subStr, String[] values, int position) {
-        boolean result = false;
-        for (int i = position; i < values.length; i++) {
-            if (values[i].contains(subStr)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
+    /**
+     * Sort deportaments.
+     * @return sorted deportaments.
+     */
     public String[] sort() {
-        Collections.sort(this.values);
-        this.addDeps();
-        return this.values.toArray(new String[this.values.size()]);
+        Arrays.sort(this.values);
+        return this.values;
     }
 
+    /**
+     * Reverse sort deportaments.
+     * @return reverse sorted deportaments.
+     */
     public String[] reverse() {
-        this.values.sort(Collections.reverseOrder());
-        this.addDeps();
-        return this.values.toArray(new String[this.values.size()]);
-    }
-
-    // Добавляем в наш лист отсутствующие депортаменты
-    private void addDeps() {
-        String lvlOne = "";
-        String lvlTwo = "";
-        for (int i = 0; i < this.values.size(); i++) {
-            String[] split = this.values.get(i).split("\\\\");
-            // Если в листе попался депортамент первого уровня то запоминаем его
-            if (split.length == 1) {
-                lvlOne = this.values.get(i);
-            // Если попался депортамент второго уровня то сравниваем департаменты первого уровня
-            // и при необходимост добавляем
-            } else if (split.length == 2) {
-                lvlTwo = this.values.get(i);
-                if (!lvlOne.equals(split[0])) {
-                    lvlOne = split[0];
-                    this.values.add(i, split[0]);
-                    i++;
+        Arrays.sort(this.values, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                int minLen = Math.min(o1.length(), o2.length());
+                int result = o1.length() - o2.length();
+                for (int index = 0; index < minLen; index++) {
+                    char o1Char = o1.charAt(index);
+                    char o2Char = o2.charAt(index);
+                    if (o2Char - o1Char != 0) {
+                        result = o2Char - o1Char;
+                        break;
+                    }
                 }
-            // Если попалмя депортамент третьего уровня то сравниваем перыве и вторые уровни
-            } else if (split.length == 3) {
-                // Можно убрать дублирующий код и поставить i-- в конце, чтобы перепроверить
-                // депортамент первого уровня, но тогда будут лишние пробеги и двойная проверка
-                // депортаментов второго уровня.
-                if (!lvlOne.equals(split[0])) {
-                    lvlOne = split[0];
-                    this.values.add(i, split[0]);
-                    i++;
-                }
-                String tmpLvlTwo = String.format("%s\\%s", split[0], split[1]);
-                if (!lvlTwo.equals(tmpLvlTwo)) {
-                    lvlTwo = tmpLvlTwo;
-                    this.values.add(i, tmpLvlTwo);
-                    i++;
-                }
+                return result;
             }
-        }
+        });
+        return this.values;
     }
 
 }

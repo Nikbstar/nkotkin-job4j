@@ -28,17 +28,21 @@ public class SimpleArray<T> implements Iterable<T> {
         return (T) this.values[index];
     }
 
+    public int size() {
+        return this.index;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             int cursor = 0;
             @Override
             public boolean hasNext() {
-                return this.cursor != values.length;
+                return this.cursor != size();
             }
             @Override
             public T next() {
-                if (this.cursor >= values.length) {
+                if (this.cursor >= size()) {
                     throw new NoSuchElementException();
                 }
                 return (T) values[this.cursor++];

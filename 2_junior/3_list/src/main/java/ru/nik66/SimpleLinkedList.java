@@ -17,13 +17,46 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         this.first.setNext(this.last);
     }
 
-    public void add(E value) {
-        Node<E> tmp = this.last;
-        tmp.setElement(value);
-        this.last = new Node<>(tmp, null, null);
-        tmp.setNext(this.last);
+    public void addFirst(E value) {
+        Node<E> node = this.first;
+        node.setElement(value);
+        this.first = new Node<>(null, null, node);
+        node.setPrev(this.first);
         this.size++;
         this.modCount++;
+    }
+
+    public void addLast(E value) {
+        Node<E> node = this.last;
+        node.setElement(value);
+        this.last = new Node<>(node, null, null);
+        node.setNext(this.last);
+        this.size++;
+        this.modCount++;
+    }
+
+    public E removeFirst() {
+        Node<E> node = this.first.getNext();
+        E result = node.getElement();
+        this.first.setNext(node.getNext());
+        node.getNext().setPrev(this.first);
+        this.size--;
+        this.modCount++;
+        return result;
+    }
+
+    public E removeLast() {
+        Node<E> node = this.last.getPrev();
+        E result = node.getElement();
+        this.last.setPrev(node.getPrev());
+        node.getPrev().setNext(this.last);
+        this.size--;
+        this.modCount++;
+        return result;
+    }
+
+    public void add(E value) {
+        this.addLast(value);
     }
 
     public E get(int index) {

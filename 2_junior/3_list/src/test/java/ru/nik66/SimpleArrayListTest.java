@@ -49,4 +49,16 @@ public class SimpleArrayListTest {
         }
     }
 
+    @Test
+    public void whenListContainsElement() {
+        SimpleArrayList<String> myList = new SimpleArrayList<>();
+        myList.add("1");
+        boolean actual = myList.contains("1");
+        boolean expected = true;
+        assertThat(actual, is(expected));
+        actual = myList.contains("2");
+        expected = false;
+        assertThat(actual, is(expected));
+    }
+
 }

@@ -29,6 +29,17 @@ public class SimpleArrayList<E> implements Iterable<E> {
         return this.container.length;
     }
 
+    public boolean contains(E element) {
+        boolean result = false;
+        for (Object e : this.container) {
+            if (element.equals(e)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
     public void add(E value) {
         modCount++;
         if (this.size() >= this.getLength()) {

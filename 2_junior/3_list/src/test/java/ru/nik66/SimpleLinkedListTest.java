@@ -47,4 +47,16 @@ public class SimpleLinkedListTest {
         }
     }
 
+    @Test
+    public void whenContains() {
+        SimpleLinkedList<String> myList = new SimpleLinkedList<>();
+        myList.add("1");
+        boolean actual = myList.contains("1");
+        boolean expected = true;
+        assertThat(actual, is(expected));
+        actual = myList.contains("2");
+        expected = false;
+        assertThat(actual, is(expected));
+    }
+
 }

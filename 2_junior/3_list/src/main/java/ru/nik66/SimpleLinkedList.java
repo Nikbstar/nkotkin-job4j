@@ -17,6 +17,19 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         this.first.setNext(this.last);
     }
 
+    public boolean contains(E element) {
+        boolean result = false;
+        Node<E> node = this.first.getNext();
+        while (node != this.last) {
+            if (node.getElement().equals(element)) {
+                result = true;
+                break;
+            }
+            node = node.getNext();
+        }
+        return result;
+    }
+
     public void addFirst(E value) {
         Node<E> node = this.first;
         node.setElement(value);

@@ -2,7 +2,7 @@ package ru.nik66;
 
 import java.util.Iterator;
 
-public class SimpleSet<E> implements Iterable<E>{
+public class SimpleSet<E> implements Iterable<E> {
 
     private SimpleArrayList<E> list;
 

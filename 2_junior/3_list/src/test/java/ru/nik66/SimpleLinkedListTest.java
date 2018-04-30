@@ -59,4 +59,15 @@ public class SimpleLinkedListTest {
         assertThat(actual, is(expected));
     }
 
+    @Test
+    public void whenRemoveElement() {
+        SimpleLinkedList<String> myList = new SimpleLinkedList<>();
+        myList.add("1");
+        myList.add("2");
+        assertThat(myList.remove("1"), is("1"));
+        assertThat(myList.contains("1"), is(false));
+        assertThat(myList.size(), is(1));
+        assertThat(myList.get(0), is("2"));
+    }
+
 }

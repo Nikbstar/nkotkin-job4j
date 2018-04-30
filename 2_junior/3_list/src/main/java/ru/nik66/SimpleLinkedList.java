@@ -68,6 +68,22 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result;
     }
 
+    public E remove(E value) {
+        Node<E> node = this.first;
+        E result = null;
+        for (int i = 0; i < this.size(); i++) {
+            node = node.getNext();
+            if (node.getElement().equals(value)) {
+                result = node.getElement();
+                node.getPrev().setNext(node.getNext());
+                node.getNext().setPrev(node.getPrev());
+                this.size--;
+                this.modCount++;
+            }
+        }
+        return result;
+    }
+
     public void add(E value) {
         this.addLast(value);
     }

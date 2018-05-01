@@ -9,7 +9,7 @@ import java.util.Map;
 public class UserTest {
 
     @Test
-    public void whenEqualsAndHashCodeIsNotOverride() {
+    public void whenEqualsAndHashCodeIsOverride() {
         User user1 = new User("Masha", 0, new GregorianCalendar(2018, 4, 15));
         User user2 = new User("Masha", 0, new GregorianCalendar(2018, 4, 15));
         Map<User, Object> map = new HashMap<>();

@@ -174,7 +174,7 @@ public class SimpleHashSet<E> implements Iterable<E> {
      */
     private int hash(E e) {
         int hash = 31 * 17 + e.hashCode();
-        return hash % this.hashTable.length;
+        return Math.abs(hash) % this.hashTable.length;
     }
 
     /**

@@ -72,4 +72,16 @@ public class TreeTest {
         }
     }
 
+    @Test
+    public void whenIsBinaryTest() {
+        Tree<Integer> tree = new Tree<>(1);
+        assertThat(tree.isBinary(), is(true));
+        tree.add(1, 2);
+        assertThat(tree.isBinary(), is(true));
+        tree.add(1, 3);
+        assertThat(tree.isBinary(), is(true));
+        tree.add(1, 4);
+        assertThat(tree.isBinary(), is(false));
+    }
+
 }

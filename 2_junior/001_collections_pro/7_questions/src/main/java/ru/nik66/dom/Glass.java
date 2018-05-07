@@ -25,7 +25,8 @@ public class Glass {
     }
 
     public boolean add(Order order) {
-        boolean result = merge(order);
+        boolean result = addVolume(order);
+        result = result || merge(order);
         if (!result && order.getAction().equals(Action.ASK)) {
             result = this.ask.add(order);
         }
@@ -41,6 +42,24 @@ public class Glass {
             result = this.ask.remove(order);
         } else if (order.getAction().equals(Action.BID)) {
             result = this.bid.remove(order);
+        }
+        return result;
+    }
+
+    private boolean addVolume(Order order) {
+        boolean result = false;
+        Set<Order> tmp;
+        if (order.getAction().equals(Action.ASK)) {
+            tmp = this.ask;
+        } else {
+            tmp = this.bid;
+        }
+        for (Order o : tmp) {
+            if (o.getPrice() == order.getPrice()) {
+                o.setVolume(o.getVolume() + order.getVolume());
+                result = true;
+                break;
+            }
         }
         return result;
     }

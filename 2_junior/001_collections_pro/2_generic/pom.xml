@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>ru.nik66</groupId>
-        <artifactId>2_junior</artifactId>
+        <artifactId>001_collections_pro</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 

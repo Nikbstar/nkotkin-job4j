@@ -1,8 +1,6 @@
 package ru.nik66.dom;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Glass {
 
@@ -81,7 +79,7 @@ public class Glass {
                 }
             }
             if (forRemove.size() > 0) {
-                this.bid.removeAll(forRemove);
+                this.ask.removeAll(forRemove);
             }
         } else {
             Set<Order> forRemove = new HashSet<>();
@@ -98,7 +96,7 @@ public class Glass {
                 }
             }
             if (forRemove.size() > 0) {
-                this.ask.removeAll(forRemove);
+                this.bid.removeAll(forRemove);
             }
         }
         return result;
@@ -110,11 +108,18 @@ public class Glass {
         newOrder.setVolume(newOrder.getVolume() - count);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        // TODO: вернуть строку со списком всех предложений стакана.
-        return sb.toString();
+    public List<String> toStringList() {
+        List<String> result = new ArrayList<>();
+        Set<Order> tmp = new TreeSet<>();
+        tmp.addAll(this.ask);
+        tmp.addAll(this.bid);
+        for (Order order : tmp) {
+            String bid = order.getAction().equals(Action.BID) ? String.valueOf(order.getVolume()) : "";
+            String ask = order.getAction().equals(Action.ASK) ? String.valueOf(order.getVolume()) : "";
+            String price = String.valueOf(order.getPrice());
+            result.add(String.format("%5s%7s%5s", bid, price, ask));
+        }
+        return result;
     }
 
     /**

@@ -79,6 +79,10 @@ public class Order implements Comparable<Order> {
         this.volume = volume;
     }
 
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     @Override
     public int compareTo(Order o) {
         return Double.compare(o.getPrice(), this.getPrice());

@@ -17,10 +17,13 @@ public class PingPong extends Application {
         Group group = new Group();
         Rectangle rectangle = new Rectangle(50, 100, 10, 10);
         group.getChildren().add(rectangle);
-        new Thread(new RectangleMove(rectangle)).start();
+        Thread rectangleThread = new Thread(new RectangleMove(rectangle));
+        rectangleThread.start();
         primaryStage.setScene(new Scene(group, limitX, limitY));
         primaryStage.setTitle(JOB4J);
         primaryStage.setResizable(false);
+        // primaryStage.setOnCloseRequest(event -> System.exit(0));
+        primaryStage.setOnCloseRequest(event -> rectangleThread.interrupt());
         primaryStage.show();
     }
 }

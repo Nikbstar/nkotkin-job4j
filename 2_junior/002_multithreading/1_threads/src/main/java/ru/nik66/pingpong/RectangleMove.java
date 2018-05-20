@@ -15,6 +15,9 @@ public class RectangleMove implements Runnable {
         int x = 1;
         int y = 1;
         while (true) {
+            if (Thread.interrupted()) {
+                return;
+            }
             double getX = this.rectangle.getX();
             double getY = this.rectangle.getY();
             if (getX <= 0 || getX >= 290) {
@@ -28,7 +31,7 @@ public class RectangleMove implements Runnable {
             try {
                 Thread.sleep(60);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                return;
             }
         }
     }

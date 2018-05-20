@@ -6,7 +6,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <jdk.version>1.8</jdk.version>
+    <jdk.version>9</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 

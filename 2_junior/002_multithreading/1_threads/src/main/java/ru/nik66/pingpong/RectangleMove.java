@@ -12,7 +12,7 @@ public class RectangleMove implements Runnable {
 
     @Override
     public void run() {
-        int x = 1;
+        int x = 2;
         int y = 1;
         while (true) {
             if (Thread.interrupted()) {
@@ -20,10 +20,10 @@ public class RectangleMove implements Runnable {
             }
             double getX = this.rectangle.getX();
             double getY = this.rectangle.getY();
-            if (getX <= 0 || getX >= 290) {
+            if (getX <= 0 || getX >= 300) {
                 x *= -1;
             }
-            if (getY <= 0 || getY >= 290) {
+            if (getY <= 0 || getY >= 300) {
                 y *= -1;
             }
             this.rectangle.setX(getX + x);

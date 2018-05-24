@@ -28,17 +28,17 @@ public class TrieTest {
 
     @Test
     public void whenInsertAndQueryThenReturnSetOfPositions() {
-        Set<Integer> actual = this.trie.query("pqrs");
-        Set<Integer> excepted = new HashSet<>();
-        excepted.add(0);
-        excepted.add(4);
+        Set<Long> actual = this.trie.query("pqrs");
+        Set<Long> excepted = new HashSet<>();
+        excepted.add(0L);
+        excepted.add(4L);
         assertThat(actual, is(excepted));
     }
 
     @Test
     public void whenWrongQueryThenReturnNull() {
-        Set<Integer> actual = this.trie.query("abcd");
-        Set<Integer> excepted = null;
+        Set<Long> actual = this.trie.query("abcd");
+        Set<Long> excepted = null;
         assertThat(actual, is(excepted));
     }
 

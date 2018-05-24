@@ -3,15 +3,20 @@ package ru.nik66.wordindex;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class WordIndexTest {
 
-    WIndexable wordIndex;
+    private WIndexable wordIndex;
 
     @Before
     public void initialize() {
@@ -21,31 +26,66 @@ public class WordIndexTest {
 
     @Test
     public void whenLoadFileAndGetIndexesThenReturnSetOfPositions() {
-        Set<Integer> actual = this.wordIndex.getIndexes4Word("one");
-        Set<Integer> expected = new HashSet<>();
-        expected.add(0);
-        expected.add(2);
-        expected.add(4);
-        expected.add(6);
-        expected.add(8);
+        Set<Long> actual = this.wordIndex.getIndexes4Word("one");
+        Set<Long> expected = new TreeSet<>();
+        expected.add(0L);
+        expected.add(9L);
+        expected.add(19L);
+        expected.add(29L);
+        expected.add(39L);
         assertThat(actual, is(expected));
 
         actual = this.wordIndex.getIndexes4Word("four");
-        expected = new HashSet<>();
-        expected.add(5);
+        expected = new TreeSet<>();
+        expected.add(24L);
         assertThat(actual, is(expected));
 
         actual = this.wordIndex.getIndexes4Word("six");
-        expected = new HashSet<>();
-        expected.add(9);
+        expected = new TreeSet<>();
+        expected.add(44L);
         assertThat(actual, is(expected));
     }
 
     @Test
     public void whenGetIndexesFromWrongWordThenReturnNull() {
-        Set<Integer> actual = this.wordIndex.getIndexes4Word("abc");
-        Set<Integer> expected = null;
+        Set<Long> actual = this.wordIndex.getIndexes4Word("abc");
+        Set<Long> expected = null;
         assertThat(actual, is(expected));
     }
 
+    @Test
+    public void whenTestEqualsWithStringIndexOfThen() {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader fileReader = new BufferedReader(new FileReader("WITest.txt"))) {
+            while (fileReader.ready()) {
+                sb.append(fileReader.readLine()).append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Set<Long> actual = this.wordIndex.getIndexes4Word("two");
+        Set<Long> expected = new TreeSet<>();
+        expected.add((long) sb.toString().indexOf("two"));
+        assertThat(actual, is(expected));
+
+        actual = this.wordIndex.getIndexes4Word("three");
+        expected = new TreeSet<>();
+        expected.add((long) sb.toString().indexOf("three"));
+        assertThat(actual, is(expected));
+
+        actual = this.wordIndex.getIndexes4Word("four");
+        expected = new TreeSet<>();
+        expected.add((long) sb.toString().indexOf("four"));
+        assertThat(actual, is(expected));
+
+        actual = this.wordIndex.getIndexes4Word("five");
+        expected = new TreeSet<>();
+        expected.add((long) sb.toString().indexOf("five"));
+        assertThat(actual, is(expected));
+
+        actual = this.wordIndex.getIndexes4Word("six");
+        expected = new TreeSet<>();
+        expected.add((long) sb.toString().indexOf("six"));
+        assertThat(actual, is(expected));
+    }
 }

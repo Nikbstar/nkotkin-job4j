@@ -4,8 +4,8 @@ import java.util.Set;
 
 public interface WIndexable {
 
-    public void loadFile(String fileName);
+    void loadFile(String fileName);
 
-    public Set<Integer> getIndexes4Word(String searchWord);
+    Set<Long> getIndexes4Word(String searchWord);
 
 }

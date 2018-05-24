@@ -1,7 +1,7 @@
 package ru.nik66.wordindex;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Префиксное дерево для индексации слов в тексте.
@@ -12,6 +12,7 @@ public class Trie {
      * Корневой узел.
      */
     private final TrieNode root;
+
     /**
      * Статическое поле для подсчета индексов.
      */
@@ -36,7 +37,7 @@ public class Trie {
      * @param s слово.
      * @return Set позиций слова или null, если слова нет в тексте.
      */
-    public Set<Integer> query(final String s) {
+    public Set<Long> query(final String s) {
         TrieNode current = this.root;
         for (int i = 0; i < s.length(); i++) {
             if (current == null) {
@@ -49,13 +50,22 @@ public class Trie {
 
     /**
      * Вставить слово в дерево.
+     * @param s слово.
+     */
+    public void insert(final String s) {
+        this.insert(s, Trie.index++);
+    }
+
+    /**
+     * Вставить слово в дерево.
      * Пробегаем по символам слова и сравниваем их с ячейками в массиве,
      * если ячейки по коду символа равна null, то создаем в ней новую
      * ноду.
      * В конце слова в Set записываем позицию слова в файле.
      * @param s слово.
+     * @param index позиция слова в файле.
      */
-    public void insert(final String s) {
+    public void insert(final String s, final long index) {
         TrieNode current = this.root;
         for (int i = 0; i < s.length(); i++) {
             if (current.trieNodes[s.charAt(i) - 'a'] == null) {
@@ -63,7 +73,7 @@ public class Trie {
             }
             current = current.next(s.charAt(i));
         }
-        current.positions.add(Trie.index++);
+        current.positions.add(index);
     }
 
 }
@@ -80,7 +90,7 @@ class TrieNode {
     /**
      * Сет для записи позиции слова в тексте.
      */
-    public final Set<Integer> positions = new HashSet<>();
+    public final Set<Long> positions = new TreeSet<>();
 
     /**
      * Поиск следующей ноды.

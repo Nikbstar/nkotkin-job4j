@@ -23,11 +23,14 @@ public class WordIndex implements WIndexable {
     @Override
     public void loadFile(final String fileName) {
         try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
+            long index = 0;
             while (fileReader.ready()) {
                 String[] words = fileReader.readLine().split("\\W+");
                 for (String word : words) {
-                    this.trie.insert(word.toLowerCase());
+                    this.trie.insert(word.toLowerCase(), index);
+                    index += word.length() + 1;
                 }
+                index += System.lineSeparator().length() - 1;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -41,7 +44,7 @@ public class WordIndex implements WIndexable {
      * @return set позиций слова в тексте.
      */
     @Override
-    public Set<Integer> getIndexes4Word(String searchWord) {
+    public Set<Long> getIndexes4Word(String searchWord) {
         return this.trie.query(searchWord.toLowerCase());
     }
 

@@ -25,12 +25,15 @@ public class WordIndex implements WIndexable {
         try (BufferedReader fileReader = new BufferedReader(new FileReader(fileName))) {
             long index = 0;
             while (fileReader.ready()) {
-                String[] words = fileReader.readLine().split("\\W+");
-                for (String word : words) {
-                    this.trie.insert(word.toLowerCase(), index);
-                    index += word.length() + 1;
+                String line = fileReader.readLine();
+                String[] words = line.split("\\W+");
+                String[] delimiters = line.split("\\w+");
+                for (int i = 0; i < words.length; i++) {
+                    this.trie.insert(words[i].toLowerCase(), index);
+                    index += words[i].length()
+                            + ((i + 1 < delimiters.length) ? delimiters[i + 1].length() : 0);
                 }
-                index += System.lineSeparator().length() - 1;
+                index += System.lineSeparator().length();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,7 +47,7 @@ public class WordIndex implements WIndexable {
      * @return set позиций слова в тексте.
      */
     @Override
-    public Set<Long> getIndexes4Word(String searchWord) {
+    public Set<Long> getIndexes4Word(final String searchWord) {
         return this.trie.query(searchWord.toLowerCase());
     }
 

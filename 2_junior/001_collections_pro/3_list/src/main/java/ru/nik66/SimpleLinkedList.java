@@ -1,13 +1,20 @@
 package ru.nik66;
 
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+@ThreadSafe
 public class SimpleLinkedList<E> implements Iterable<E> {
 
+    @GuardedBy("this")
     private Node<E> first;
+    @GuardedBy("this")
     private Node<E> last;
+    @GuardedBy("this")
     private int size = 0;
     private int modCount = 0;
 
@@ -17,7 +24,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         this.first.setNext(this.last);
     }
 
-    public boolean contains(E element) {
+    public synchronized boolean contains(final E element) {
         boolean result = false;
         Node<E> node = this.first.getNext();
         while (node != this.last) {
@@ -30,7 +37,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result;
     }
 
-    public void addFirst(E value) {
+    public synchronized void addFirst(final E value) {
         Node<E> node = this.first;
         node.setElement(value);
         this.first = new Node<>(null, null, node);
@@ -39,7 +46,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         this.modCount++;
     }
 
-    public void addLast(E value) {
+    public synchronized void addLast(final E value) {
         Node<E> node = this.last;
         node.setElement(value);
         this.last = new Node<>(node, null, null);
@@ -48,7 +55,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         this.modCount++;
     }
 
-    public E removeFirst() {
+    public synchronized E removeFirst() {
         Node<E> node = this.first.getNext();
         E result = node.getElement();
         this.first.setNext(node.getNext());
@@ -58,7 +65,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result;
     }
 
-    public E removeLast() {
+    public synchronized E removeLast() {
         Node<E> node = this.last.getPrev();
         E result = node.getElement();
         this.last.setPrev(node.getPrev());
@@ -68,7 +75,7 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result;
     }
 
-    public E remove(E value) {
+    public synchronized E remove(final E value) {
         Node<E> node = this.first;
         E result = null;
         for (int i = 0; i < this.size(); i++) {
@@ -84,11 +91,11 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result;
     }
 
-    public void add(E value) {
+    public void add(final E value) {
         this.addLast(value);
     }
 
-    public E get(int index) {
+    public synchronized E get(final int index) {
         if (index < 0 || index >= this.size()) {
             throw new IndexOutOfBoundsException("Wrong index!");
         }
@@ -109,12 +116,12 @@ public class SimpleLinkedList<E> implements Iterable<E> {
         return result;
     }
 
-    public int size() {
+    public synchronized int size() {
         return this.size;
     }
 
     @Override
-    public Iterator<E> iterator() {
+    public synchronized Iterator<E> iterator() {
         return new Iterator<E>() {
 
             private int index = 0;
@@ -153,15 +160,15 @@ public class SimpleLinkedList<E> implements Iterable<E> {
             this.next = next;
         }
 
-        void setNext(Node<E> next) {
+        void setNext(final Node<E> next) {
             this.next = next;
         }
 
-        void setPrev(Node<E> prev) {
+        void setPrev(final Node<E> prev) {
             this.prev = prev;
         }
 
-        void setElement(E element) {
+        void setElement(final E element) {
             this.element = element;
         }
 

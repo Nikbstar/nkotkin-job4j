@@ -12,7 +12,7 @@ import java.util.Map;
 public class UserStorage {
 
     @GuardedBy("this")
-    private Map<Integer, User> users = Collections.synchronizedMap(new HashMap<>());
+    private Map<Integer, User> users = new HashMap<>();
 
     public synchronized boolean add(User user) {
         boolean result = false;

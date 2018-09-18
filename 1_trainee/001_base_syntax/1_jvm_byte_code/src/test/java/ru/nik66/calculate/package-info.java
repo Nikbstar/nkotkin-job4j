@@ -1,4 +1,4 @@
 /**
  * Tests for Calculator.
  */
-package ru.nik66;
+package ru.nik66.calculate;

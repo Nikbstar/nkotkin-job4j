@@ -1,4 +1,4 @@
-package ru.nik66;
+package ru.nik66.calculate;
 
 /**
  * First Java application.
@@ -18,7 +18,7 @@ public class Calculate {
 	}
 
 	/**
-	 * Mine method for starting the aplication.
+	 * Mine method for starting the application.
 	 * @param args - array of strings
 	 */
 	public static void main(String[] args) {

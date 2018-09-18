@@ -1,11 +1,29 @@
 package ru.nik66.condition;
 
+/**
+ * Triangle class
+ */
 public class Triangle {
 
+    /**
+     * First point.
+     */
     private Point a;
+    /**
+     * Second point.
+     */
     private Point b;
+    /**
+     * Third point.
+     */
     private Point c;
 
+    /**
+     * Constructor with all points.
+     * @param a First point.
+     * @param b Second point.
+     * @param c Third point.
+     */
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
         this.b = b;

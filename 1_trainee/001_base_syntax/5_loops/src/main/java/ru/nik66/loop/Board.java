@@ -1,7 +1,16 @@
-package ru.nik66;
+package ru.nik66.loop;
 
+/**
+ * The class draws the chessboard in console by pseudo-graphic.
+ */
 public class Board {
 
+    /**
+     * The method create the string with chessboard by pseudo-graphic.
+     * @param width board's width.
+     * @param height board's height.
+     * @return string with chessboard.
+     */
     public String paint(int width, int height) {
         StringBuilder sb = new StringBuilder();
         String eol = System.lineSeparator();

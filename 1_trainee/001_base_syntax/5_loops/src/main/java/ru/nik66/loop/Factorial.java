@@ -1,7 +1,15 @@
-package ru.nik66;
+package ru.nik66.loop;
 
+/**
+ * The class calculates the factorial.
+ */
 public class Factorial {
 
+    /**
+     * The method calculates the factorial of the number n.
+     * @param n number.
+     * @return factorial.
+     */
     public int calc(int n) {
         int result = 1;
         if (n == 0) {

@@ -13,5 +13,6 @@
     <module>001_base_syntax</module>
     <module>002_oop</module>
     <module>003_collections</module>
+    <module>004_fp_lambda_streamapi</module>
   </modules>
 </project>

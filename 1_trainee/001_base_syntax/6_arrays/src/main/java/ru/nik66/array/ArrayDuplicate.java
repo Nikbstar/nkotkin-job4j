@@ -1,9 +1,17 @@
-package ru.nik66;
+package ru.nik66.array;
 
 import java.util.Arrays;
 
+/**
+ * The class works with the duplicates into the array.
+ */
 public class ArrayDuplicate {
 
+    /**
+     * The method removes duplicates from the array "array".
+     * @param array array.
+     * @return copy of array without duplicates.
+     */
     public String[] remove(String[] array) {
         int len = array.length;
 

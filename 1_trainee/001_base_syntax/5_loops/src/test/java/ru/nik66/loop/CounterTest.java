@@ -1,4 +1,4 @@
-package ru.nik66;
+package ru.nik66.loop;
 
 import org.junit.Test;
 

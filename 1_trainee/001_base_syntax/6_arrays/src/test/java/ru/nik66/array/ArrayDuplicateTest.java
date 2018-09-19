@@ -1,6 +1,7 @@
-package ru.nik66;
+package ru.nik66.array;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.collection.IsArrayContainingInAnyOrder.arrayContainingInAnyOrder;
 

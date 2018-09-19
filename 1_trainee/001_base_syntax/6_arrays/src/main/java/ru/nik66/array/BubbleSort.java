@@ -1,7 +1,15 @@
-package ru.nik66;
+package ru.nik66.array;
 
+/**
+ * The class sorts the array.
+ */
 public class BubbleSort {
 
+    /**
+     * The method sorts the array by bubble sort.
+     * @param array array.
+     * @return sorted array.
+     */
     public int[] sort(int[] array) {
         int tmp;
         for (int i = 0; i < array.length - 1; i++) {

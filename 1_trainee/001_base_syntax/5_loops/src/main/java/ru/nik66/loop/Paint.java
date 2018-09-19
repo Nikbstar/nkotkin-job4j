@@ -1,10 +1,18 @@
-package ru.nik66;
+package ru.nik66.loop;
 
 import java.util.function.BiPredicate;
 
+/**
+ * The class paints the triangles in console by pseudo-graphic.
+ */
 public class Paint {
 
-    public String pyramid(int h) {
+    /**
+     * The method returns a string with the triangle.
+     * @param height the triangle's height.
+     * @return string with pseudo-graphic.
+     */
+    public String pyramid(int height) {
 //        StringBuilder sb = new StringBuilder();
 //        String eol = System.lineSeparator();
 //        int w = (h * 2) - 1;
@@ -20,9 +28,18 @@ public class Paint {
 //            sb.append(eol);
 //        }
 //        return sb.toString();
-        return this.loopBy(h, (h * 2) - 1, (i, j) -> ((j + 1 >= h - i) && (j + 1 <= h + i)));
+        return this.loopBy(
+                height,
+                (height * 2) - 1,
+                (row, column) -> ((column + 1 >= height - row) && (column + 1 <= height + row))
+        );
     }
 
+    /**
+     * The method returns a string with the right side triangle.
+     * @param height the triangle's height.
+     * @return string with pseudo-graphic.
+     */
     public String rightTrl(int height) {
 //        StringBuilder sb = new StringBuilder();
 //        int width = height;
@@ -40,6 +57,11 @@ public class Paint {
         return this.loopBy(height, height, (row, col) -> row >= col);
     }
 
+    /**
+     * The method returns a string with the left side triangle.
+     * @param height the triangle's height.
+     * @return string with pseudo-graphic.
+     */
     public String leftTrl(int height) {
 //        StringBuilder sb = new StringBuilder();
 //        int width = height;
@@ -57,6 +79,13 @@ public class Paint {
         return this.loopBy(height, height, (row, col) -> row >= height - col - 1);
     }
 
+    /**
+     * The method returns a string makes by predicate.
+     * @param height triangle's height.
+     * @param width triangle's width.
+     * @param predicate condition for making the string.
+     * @return the string with triangle.
+     */
     private String loopBy(int height, int width, BiPredicate<Integer, Integer> predicate) {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row != height; row++) {

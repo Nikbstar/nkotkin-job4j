@@ -1,4 +1,4 @@
-package ru.nik66;
+package ru.nik66.array;
 
 import org.junit.Test;
 

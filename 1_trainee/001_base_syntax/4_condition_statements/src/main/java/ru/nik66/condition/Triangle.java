@@ -30,10 +30,24 @@ public class Triangle {
         this.c = c;
     }
 
+    /**
+     * The Method of calculating the semi-perimeter along the length of the the sides.
+     * @param ab the length of the side ab.
+     * @param bc the length of the side bc.
+     * @param ca the length of the side ca.
+     * @return semi-perimeter.
+     */
     public double period(double ab, double bc, double ca) {
         return (ab + bc + ca) / 2;
     }
 
+    /**
+     * The method verifies the correctness of the triangle.
+     * @param ab the length of the side ab.
+     * @param bc the length of the side bc.
+     * @param ca the length of the side ca.
+     * @return true if the triangle is correct.
+     */
     private boolean exist(double ab, double bc, double ca) {
         boolean result = false;
         if ((ab + bc > ca) && (bc + ca > ab) && (ca + ab > bc)) {
@@ -42,6 +56,10 @@ public class Triangle {
         return result;
     }
 
+    /**
+     * The method calculates the area of the triangle.
+     * @return the area of the triangle.
+     */
     public double area() {
         double rsl = -1;
         double ab = this.a.distanceTo(this.b);

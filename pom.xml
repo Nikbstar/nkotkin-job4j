@@ -93,7 +93,6 @@
   <modules>
     <module>1_trainee</module>
     <module>2_junior</module>
-    <module>job4j</module>
   </modules>
 
 </project>

@@ -24,7 +24,7 @@ public class Logic3T {
     public boolean isWinnerX() {
         boolean result = false;
         for (int i = 0; i < this.table.length; i++) {
-            if (checkX(i, 0,0, 1)) {
+            if (checkX(i, 0, 0, 1)) {
                 result = true;
                 break;
             }
@@ -46,7 +46,7 @@ public class Logic3T {
     public boolean isWinnerO() {
         boolean result = false;
         for (int i = 0; i < this.table.length; i++) {
-            if (checkO(i, 0,0, 1)) {
+            if (checkO(i, 0, 0, 1)) {
                 result = true;
                 break;
             }

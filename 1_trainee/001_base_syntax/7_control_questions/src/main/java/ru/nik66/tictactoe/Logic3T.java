@@ -47,7 +47,8 @@ public class Logic3T {
 
     private boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
         boolean result = true;
-        for (int i = 0; i < this.table.length; i++) {
+        int limit = this.table.length;
+        for (int i = 0; i < limit; i++) {
             Figure3T cell = this.table[startX][startY];
             startX += deltaX;
             startY += deltaY;

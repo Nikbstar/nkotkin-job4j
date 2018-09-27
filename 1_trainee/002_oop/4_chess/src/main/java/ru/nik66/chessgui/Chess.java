@@ -12,6 +12,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import ru.nik66.chess.exceptions.FigureNotFoundException;
+import ru.nik66.chess.exceptions.ImpossibleMoveException;
+import ru.nik66.chess.exceptions.OccupiedWayException;
 import ru.nik66.chessgui.figures.Cell;
 import ru.nik66.chessgui.figures.Figure;
 import ru.nik66.chessgui.figures.black.*;
@@ -61,7 +64,13 @@ public class Chess extends Application {
         );
         rect.setOnMouseReleased(
                 event -> {
-                    if (logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()))) {
+                    boolean move;
+                    try {
+                        move = logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()));
+                    } catch (ImpossibleMoveException | OccupiedWayException | FigureNotFoundException e) {
+                        move = false;
+                    }
+                    if (move) {
                         rect.setX(((int) event.getX() / 40) * 40 + 5);
                         rect.setY(((int) event.getY() / 40) * 40 + 5);
                     } else {

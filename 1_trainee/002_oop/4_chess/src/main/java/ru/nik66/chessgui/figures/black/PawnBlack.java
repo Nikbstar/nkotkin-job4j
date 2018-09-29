@@ -18,10 +18,13 @@ public class PawnBlack implements Figure {
 
     @Override
     public Cell[] way(Cell dest) {
-        // ToDo
         Cell[] steps = new Cell[0];
         if (this.position.y == dest.y + 1 && this.position.x == dest.x) {
             steps = new Cell[] {dest};
+        } else if (this.position.y == 6 && this.position.y == dest.y + 2 && this.position.x == dest.x) {
+            steps = new Cell[2];
+            steps[0] = Cell.findCell(dest.x, dest.y + 1);
+            steps[1] = dest;
         }
         return steps;
     }

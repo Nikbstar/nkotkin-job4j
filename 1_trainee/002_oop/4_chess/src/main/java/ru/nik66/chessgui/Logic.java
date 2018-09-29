@@ -51,4 +51,8 @@ public class Logic {
         }
         return result;
     }
+
+    public Figure[] getFigures() {
+        return this.figures;
+    }
 }

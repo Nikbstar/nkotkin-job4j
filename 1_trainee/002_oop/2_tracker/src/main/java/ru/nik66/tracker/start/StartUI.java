@@ -5,7 +5,6 @@ import java.util.List;
 
 public class StartUI {
 
-    private List<Integer> range;
     private final Input input;
     private final Tracker tracker;
 
@@ -15,12 +14,12 @@ public class StartUI {
     }
 
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, System.out::println, this.tracker);
         int key;
         menu.init();
-        this.range = new ArrayList<>();
+        List<Integer> range = new ArrayList<>();
         for (UserAction action : menu.getActions()) {
-            this.range.add(action.key());
+            range.add(action.key());
         }
         do {
             menu.show();

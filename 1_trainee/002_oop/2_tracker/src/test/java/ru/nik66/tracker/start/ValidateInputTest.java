@@ -10,6 +10,7 @@ import static org.hamcrest.core.Is.is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ValidateInputTest {
@@ -30,7 +31,7 @@ public class ValidateInputTest {
     public void whenInvalidInput() {
         List<String> answers = Arrays.asList("a", "1");
         ValidateInput input = new ValidateInput(new StubInput(answers));
-        input.ask("", Arrays.asList(0));
+        input.ask("", Collections.singletonList(0));
         assertThat(this.mem.toString(), is(String.format("Please enter validate data again.%n")));
     }
 

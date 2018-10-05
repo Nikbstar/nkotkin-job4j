@@ -4,6 +4,7 @@ import ru.nik66.tracker.models.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Tracker {
 
@@ -38,25 +39,27 @@ public class Tracker {
         return this.items;
     }
 
-    public List<Item> findByName(String name) {
+    public List<Item> findByName(final String name) {
         List<Item> result = new ArrayList<>();
-        for (Item item : this.items) {
-            if (item.getName().contains(name)) {
+        Predicate<Item> search = item -> item.getName().contains(name);
+        this.items.forEach(item -> {
+            if (search.test(item)) {
                 result.add(item);
             }
-        }
+        });
         return result;
     }
 
-    public Item findById(String id) {
-        Item result = null;
-        for (Item item : this.items) {
-            if (item.getId().equals(id)) {
-                result = item;
-                break;
+    public Item findById(final String id) {
+        final Predicate<Item> search = item -> item.getId().equals(id);
+        final Item[] result = new Item[1];
+        result[0] = null;
+        this.items.forEach(item -> {
+            if (search.test(item)) {
+                result[0] = item;
             }
-        }
-        return result;
+        });
+        return result[0];
     }
 
 }

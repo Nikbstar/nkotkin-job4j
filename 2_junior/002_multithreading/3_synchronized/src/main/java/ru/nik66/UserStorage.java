@@ -54,6 +54,6 @@ public class UserStorage {
     }
 
     public synchronized Map<Integer, User> getUsers() {
-        return users;
+        return Collections.unmodifiableMap(this.users);
     }
 }

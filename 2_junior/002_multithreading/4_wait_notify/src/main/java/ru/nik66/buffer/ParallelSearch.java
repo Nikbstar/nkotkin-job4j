@@ -7,11 +7,12 @@ public class ParallelSearch {
     public static void main(String[] args) {
         SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>();
         final Thread consumer = new Thread(() -> {
-            while (true) {
+            while (queue.size() != 0 || !Thread.currentThread().isInterrupted()) {
                 try {
                     System.out.println(queue.poll());
                 } catch (InterruptedException e) {
-                    break;
+                    //e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         });

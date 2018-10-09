@@ -2,6 +2,13 @@ package ru.nik66.blqueue;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.IntStream;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 public class SimpleBlockingQueueTest {
 
     /*
@@ -28,6 +35,39 @@ public class SimpleBlockingQueueTest {
         p2.join();
         c1.join();
         c2.join();
+    }
+
+    @Test
+    public void whenFetchAllThenGetIt() throws InterruptedException {
+        final CopyOnWriteArrayList<Integer> buffer = new CopyOnWriteArrayList<>();
+        final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>();
+        Thread producer = new Thread(() -> {
+            IntStream.range(0, 5).forEach((value) -> {
+                try {
+                    queue.offer(value);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+        Thread consumer = new Thread(() -> {
+            while (queue.size() != 0 || !Thread.currentThread().isInterrupted()) {
+                try {
+                    buffer.add(queue.poll());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+        producer.start();
+        consumer.start();
+
+        producer.join();
+        consumer.interrupt();
+        consumer.join();
+
+        assertThat(buffer, is(Arrays.asList(0, 1, 2, 3, 4)));
     }
 
 }

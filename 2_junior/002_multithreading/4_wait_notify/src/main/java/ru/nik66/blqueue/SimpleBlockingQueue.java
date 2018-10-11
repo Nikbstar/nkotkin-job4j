@@ -95,4 +95,12 @@ public class SimpleBlockingQueue<T> {
         }
     }
 
+    /**
+     * Метод проверяет пустая ли очередь.
+     * @return если очередь пустая.
+     */
+    public boolean isEmpty() {
+        return this.queue.size() == 0;
+    }
+
 }

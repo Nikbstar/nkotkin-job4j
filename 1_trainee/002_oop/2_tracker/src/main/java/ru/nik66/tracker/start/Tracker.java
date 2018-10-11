@@ -4,7 +4,9 @@ import ru.nik66.tracker.models.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Tracker {
 
@@ -40,26 +42,14 @@ public class Tracker {
     }
 
     public List<Item> findByName(final String name) {
-        List<Item> result = new ArrayList<>();
         Predicate<Item> search = item -> item.getName().contains(name);
-        this.items.forEach(item -> {
-            if (search.test(item)) {
-                result.add(item);
-            }
-        });
-        return result;
+        return this.items.stream().filter(search).collect(Collectors.toList());
     }
 
     public Item findById(final String id) {
         final Predicate<Item> search = item -> item.getId().equals(id);
-        final Item[] result = new Item[1];
-        result[0] = null;
-        this.items.forEach(item -> {
-            if (search.test(item)) {
-                result[0] = item;
-            }
-        });
-        return result[0];
+        Optional<Item> item = this.items.stream().filter(search).findFirst();
+        return item.orElse(null);
     }
 
 }

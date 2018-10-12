@@ -1,8 +1,7 @@
 package ru.nik66.collstat;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Store {
 
@@ -21,13 +20,8 @@ public class Store {
     }
 
     private int changeCount(List<User> previous, List<User> current) {
-        int result = 0;
-        for (User old : previous) {
-            if (current.contains(old) && !current.get(current.indexOf(old)).getName().equals(old.getName())) {
-                result++;
-            }
-        }
-        return result;
+        Map<Integer, String> tmp = current.stream().collect(Collectors.toMap(User::getId, User::getName));
+        return (int) previous.stream().filter((user) -> !tmp.getOrDefault(user.getId(), user.getName()).equals(user.getName())).count();
     }
 
 }

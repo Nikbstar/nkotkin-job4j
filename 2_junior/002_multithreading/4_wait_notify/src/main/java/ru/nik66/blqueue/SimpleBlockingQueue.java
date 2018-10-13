@@ -100,7 +100,9 @@ public class SimpleBlockingQueue<T> {
      * @return если очередь пустая.
      */
     public boolean isEmpty() {
-        return this.queue.size() == 0;
+        synchronized (this) {
+            return this.queue.size() == 0;
+        }
     }
 
 }

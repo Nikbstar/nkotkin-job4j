@@ -17,16 +17,16 @@ public class SQLStorage {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, username, password);
-//            // SELECT
-//            PreparedStatement st = conn.prepareStatement("SELECT * FROM users AS u WHERE u.id IN (?, ?)");
-//            st.setInt(1, 1);
-//            st.setInt(2, 3);
-//            ResultSet rs = st.executeQuery();
-//            while (rs.next()) {
-//                System.out.println(String.format("%d %s", rs.getInt("id"), rs.getString("name")));
-//            }
-//            rs.close();
-//            st.close();
+            // SELECT
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM users AS u WHERE u.id IN (?, ?)");
+            st.setInt(1, 1);
+            st.setInt(2, 3);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                System.out.println(String.format("%d %s", rs.getInt("id"), rs.getString("name")));
+            }
+            rs.close();
+            st.close();
 //            // INSERT DELETE UPDATE
 //            PreparedStatement st = conn.prepareStatement("INSERT INTO users (name) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
 //            st.setString(1, "JavaUser");
@@ -35,6 +35,7 @@ public class SQLStorage {
 //            if (generatedKeys.next()) {
 //                System.out.println(generatedKeys.getInt(1));
 //            }
+//            generatedKeys.close();
 //            st.close();
         } catch (SQLException e) {
             log.error(e.getMessage(), e);

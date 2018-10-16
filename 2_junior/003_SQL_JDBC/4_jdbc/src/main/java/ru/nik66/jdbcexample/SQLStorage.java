@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class SQLStorage {
 
-    private static final Logger log = LoggerFactory.getLogger(SQLStorage.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SQLStorage.class);
 
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/java_a_from_z";
@@ -38,13 +38,13 @@ public class SQLStorage {
 //            generatedKeys.close();
 //            st.close();
         } catch (SQLException e) {
-            log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    log.error(e.getMessage(), e);
+                    LOG.error(e.getMessage(), e);
                 }
             }
         }

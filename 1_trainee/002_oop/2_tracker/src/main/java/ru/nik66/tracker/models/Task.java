@@ -6,4 +6,8 @@ public class Task extends Item {
         super(name, description, create);
     }
 
+    public Task(String id, String name, String description, long create) {
+        super(id, name, description, create);
+    }
+
 }

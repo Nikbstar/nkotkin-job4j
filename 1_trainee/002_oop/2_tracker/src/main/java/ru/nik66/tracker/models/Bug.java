@@ -6,4 +6,8 @@ public class Bug extends Item {
         super(name, description, create);
     }
 
+    public Bug(String id, String name, String description, long create) {
+        super(id, name, description, create);
+    }
+
 }

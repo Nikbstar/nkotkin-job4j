@@ -13,7 +13,7 @@ class EditItem extends BaseAction {
     }
 
     @Override
-    public void execute(Input input, Tracker tracker) {
+    public void execute(Input input, ITracker tracker) {
         this.media.accept("~~~~~ Edit Item ~~~~~");
         Item item = tracker.findById(input.ask("Enter item id: "));
         if (item == null) {
@@ -38,11 +38,11 @@ public class MenuTracker {
     public static final int EXIT = 6;
 
     private Input input;
-    private Tracker tracker;
+    private ITracker tracker;
     private List<UserAction> actions = new ArrayList<>();
     private Consumer<String> media;
 
-    public MenuTracker(Input input, Consumer<String> media, Tracker tracker) {
+    public MenuTracker(Input input, Consumer<String> media, ITracker tracker) {
         this.input = input;
         this.tracker = tracker;
         this.media = media;
@@ -58,7 +58,7 @@ public class MenuTracker {
         // anonymous class
         this.actions.add(new BaseAction(DELETE, "Delete item.", this.media) {
             @Override
-            public void execute(Input input, Tracker tracker) {
+            public void execute(Input input, ITracker tracker) {
                 this.media.accept("~~~~~ Delete Item ~~~~~");
                 if (!tracker.delete(input.ask("Enter item id: "))) {
                     this.media.accept("~~~~~ Item not found! ~~~~~");
@@ -94,7 +94,7 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             this.media.accept("~~~~~ Add New Item ~~~~~");
             String name = input.ask("Enter item name: ");
             String description = input.ask("Enter item description: ");
@@ -112,7 +112,7 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             this.media.accept("~~~~~ Show All Items ~~~~~");
             for (Item item : tracker.findAll()) {
                 this.media.accept(String.format("id: %s\tname: %s\tdescription: %s\tdate: %s",
@@ -134,7 +134,7 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             this.media.accept("~~~~~ Find Item By Id ~~~~~");
             Item item = tracker.findById(input.ask("Enter item id: "));
             if (item == null) {
@@ -159,7 +159,7 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             this.media.accept("~~~~~ Find Item By Name ~~~~~");
             List<Item> items = tracker.findByName(input.ask("Enter item name: "));
             if (items.size() == 0) {
@@ -186,7 +186,7 @@ public class MenuTracker {
         }
 
         @Override
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
         }
 
     }

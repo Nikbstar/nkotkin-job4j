@@ -6,18 +6,12 @@
 
     <parent>
         <groupId>ru.nik66</groupId>
-        <artifactId>nkotkin-job4j</artifactId>
+        <artifactId>004_Servlet_JSP</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>ru.nik66</groupId>
-    <artifactId>2_junior</artifactId>
+    <artifactId>1_structure</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>001_collections_pro</module>
-        <module>002_multithreading</module>
-        <module>003_SQL_JDBC</module>
-        <module>004_Servlet_JSP</module>
-    </modules>
+    <packaging>war</packaging>
 </project>

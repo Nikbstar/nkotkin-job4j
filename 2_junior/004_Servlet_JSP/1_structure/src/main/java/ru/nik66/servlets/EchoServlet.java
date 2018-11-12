@@ -31,7 +31,7 @@ public class EchoServlet extends HttpServlet {
         writer.append("<body>");
         writer.append("<form action='").append(req.getContextPath()).append("/echo' method='POST'>");
         writer.append("Name: <input type='text' name='name'>").append("<br />");
-        writer.append("<input type='submit' />" );
+        writer.append("<input type='submit' />");
         writer.append("</form>").append("<hr />");
         writer.append(sb.toString());
         writer.append("</body>");

@@ -35,7 +35,7 @@ public class EchoServlet extends HttpServlet {
         writer.append("</form>").append("<hr />");
         writer.append(sb.toString());
         writer.append("</body>");
-        writer.append("<html lang='en'>");
+        writer.append("</html>");
         writer.flush();
     }
 

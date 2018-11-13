@@ -30,11 +30,29 @@ public class ValidateService implements Validate {
         return !email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
     }
 
+    private void checkLoginContent(String login) {
+        for (User user : this.persistent.findAll()) {
+            if (user.getLogin().equals(login)) {
+                throw new IllegalArgumentException("This login is used!");
+            }
+        }
+    }
+
+    private void checkEmailContent(String email) {
+        for (User user : this.persistent.findAll()) {
+            if (user.getEmail().equals(email)) {
+                throw new IllegalArgumentException("This email is used!");
+            }
+        }
+    }
+
     @Override
     public boolean add(String name, String login, String email, String dateTime) {
         if (this.isWrongEmail(email)) {
             throw new IllegalArgumentException("Wrong email address!");
         }
+        checkLoginContent(login);
+        checkEmailContent(email);
         boolean result = false;
         User user = new User(name, login, email, this.parseToLocalDateTime(dateTime));
         if (!this.persistent.findAll().contains(user)) {
@@ -49,6 +67,8 @@ public class ValidateService implements Validate {
         if (this.isWrongEmail(email)) {
             throw new IllegalArgumentException("Wrong email address!");
         }
+        checkLoginContent(login);
+        checkEmailContent(email);
         boolean result = false;
         User oldUser = this.persistent.findById(id);
         if (oldUser != null) {

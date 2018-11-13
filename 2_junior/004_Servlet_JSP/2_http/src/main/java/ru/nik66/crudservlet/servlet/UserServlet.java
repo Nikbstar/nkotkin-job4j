@@ -20,18 +20,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        List<User> users = this.logic.findAll();
-        PrintWriter print = new PrintWriter(resp.getOutputStream());
-        for (User user : users) {
-            print.append("<p>")
-                    .append(String.valueOf(user.getId())).append(") ")
-                    .append(user.getLogin()).append(" - ")
-                    .append(user.getName()).append(" - ")
-                    .append(user.getEmail()).append(" - ")
-                    .append(user.getCreateDate().toString())
-                    .append("</p>");
-        }
-        print.flush();
+        resp.sendRedirect(String.format("%s/list", req.getContextPath()));
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ValidateServiceTest {
     @Test
     public void whenAddUpdateAndDeleteUser() {
         User user = new User("Name", "log", "email@address.ru", LocalDateTime.now());
-        this.validate.add(user.getName(), user.getLogin(), user.getEmail(), user.getCreateDate().toString());
+        this.validate.add(user.getName(), user.getLogin(), user.getEmail());
         List<User> actual = this.validate.findAll();
         user.setId(actual.get(0).getId());
         List<User> excepted = Collections.singletonList(user);
@@ -37,6 +37,6 @@ public class ValidateServiceTest {
 
     @Test (expected = IllegalArgumentException.class)
     public void whenWrongEmailAddressThenThrowsException() {
-        this.validate.add("name", "log", "email.ru", LocalDateTime.now().toString());
+        this.validate.add("name", "log", "email.ru");
     }
 }

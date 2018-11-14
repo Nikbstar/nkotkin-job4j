@@ -10,7 +10,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>ru.nik66</groupId>
     <artifactId>003_SQL_JDBC</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>

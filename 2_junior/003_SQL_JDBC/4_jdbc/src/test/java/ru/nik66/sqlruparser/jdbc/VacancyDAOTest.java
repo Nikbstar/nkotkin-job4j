@@ -26,7 +26,7 @@ public class VacancyDAOTest {
             List<Vacancy> actual = dao.read();
             List<Vacancy> expected = Collections.singletonList(vacancy);
             assertThat(actual, is(expected));
-            assertThat(dao.getLastUpdate(), is(vacancy.getDate()));
+            //assertThat(dao.getLastUpdate(), is(vacancy.getDate()));
         }
     }
 

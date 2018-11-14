@@ -17,7 +17,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>ru.nik66</groupId>
     <artifactId>6_thread_pool</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>

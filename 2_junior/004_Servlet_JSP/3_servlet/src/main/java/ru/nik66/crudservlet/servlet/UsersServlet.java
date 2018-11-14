@@ -20,10 +20,7 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         List<User> users = this.logic.findAll();
-        StringBuilder createUserForm = new StringBuilder();
-        createUserForm.append("<form action='").append(req.getContextPath()).append("/create' method='GET'>");
-        createUserForm.append("<input type='submit' value='create' />");
-        createUserForm.append("</form>");
+        String createUserForm = String.format("<form action='%s/create' method='GET'><input type='submit' value='create' /></form>", req.getContextPath());
         StringBuilder table = new StringBuilder("<table>");
         for (User user : users) {
             table.append("<tr>");
@@ -53,7 +50,7 @@ public class UsersServlet extends HttpServlet {
         print.append("</head>");
         print.append("<body>");
         print.append("<h1>Users list</h1>");
-        print.append(createUserForm.toString());
+        print.append(createUserForm);
         print.append(table.toString());
         print.append("</body>");
         print.append("</html>");

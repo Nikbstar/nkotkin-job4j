@@ -20,28 +20,28 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         List<User> users = this.logic.findAll();
+        StringBuilder createUserForm = new StringBuilder();
+        createUserForm.append("<form action='").append(req.getContextPath()).append("/create' method='GET'>");
+        createUserForm.append("<input type='submit' value='create' />");
+        createUserForm.append("</form>");
         StringBuilder table = new StringBuilder("<table>");
-        table.append("<td><tr><form action='").append(req.getContextPath()).append("/create' method='POST'>");
-        table.append("<input type='submit' value='create' />");
-        table.append("</form></tr></td>");
         for (User user : users) {
-            table.append("<td>");
-            table.append("<tr>").append(user.getId()).append(") ").append(user.getLogin()).append("<tr>");
-            table.append("<tr><form action='").append(req.getContextPath()).append("/update' method='POST'>");
+            table.append("<tr>");
+            table.append("<td>").append(user.getId()).append(") ").append(user.getLogin()).append("</td>");
+            table.append("<td><form action='").append(req.getContextPath()).append("/update' method='POST'>");
             table.append("<input type='hidden' name='id' value='").append(user.getId()).append("' />");
             table.append("<input type='hidden' name='name' value='").append(user.getName()).append("' />");
             table.append("<input type='hidden' name='login' value='").append(user.getLogin()).append("' />");
             table.append("<input type='hidden' name='login' value='").append(user.getLogin()).append("' />");
             table.append("<input type='hidden' name='email' value='").append(user.getEmail()).append("' />");
-            table.append("<input type='hidden' name='date' value='").append(user.getCreateDate()).append("' />");
             table.append("<input type='submit' value='update' />");
-            table.append("</form></tr>");
-            // TODO servlet for deleting
-            table.append("<tr><form action='").append(req.getContextPath()).append("/delete' method='POST'>");
+            table.append("</form></td>");
+            table.append("<td><form action='").append(req.getContextPath()).append("/user' method='POST'>");
             table.append("<input type='hidden' name='id' value='").append(user.getId()).append("' />");
+            table.append("<input type='hidden' name='action' value='delete' />");
             table.append("<input type='submit' value='delete' />");
-            table.append("</form></tr>");
-            table.append("</td>");
+            table.append("</form></td>");
+            table.append("</tr>");
         }
         table.append("</table>");
         PrintWriter print = new PrintWriter(resp.getOutputStream());
@@ -52,6 +52,8 @@ public class UsersServlet extends HttpServlet {
         print.append("<title>Users list</title>");
         print.append("</head>");
         print.append("<body>");
+        print.append("<h1>Users list</h1>");
+        print.append(createUserForm.toString());
         print.append(table.toString());
         print.append("</body>");
         print.append("</html>");

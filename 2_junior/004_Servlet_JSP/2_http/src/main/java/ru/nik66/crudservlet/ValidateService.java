@@ -47,14 +47,14 @@ public class ValidateService implements Validate {
     }
 
     @Override
-    public boolean add(String name, String login, String email, String dateTime) {
+    public boolean add(String name, String login, String email) {
         if (this.isWrongEmail(email)) {
             throw new IllegalArgumentException("Wrong email address!");
         }
         checkLoginContent(login);
         checkEmailContent(email);
         boolean result = false;
-        User user = new User(name, login, email, this.parseToLocalDateTime(dateTime));
+        User user = new User(name, login, email, LocalDateTime.now());
         if (!this.persistent.findAll().contains(user)) {
             this.persistent.add(user);
             result = true;

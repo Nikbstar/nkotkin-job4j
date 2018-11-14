@@ -100,4 +100,9 @@ public class ValidateService implements Validate {
         return this.persistent.findById(id);
     }
 
+    @Override
+    public void clear() {
+        this.persistent.clear();
+    }
+
 }

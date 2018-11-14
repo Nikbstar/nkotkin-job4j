@@ -9,7 +9,7 @@ public class User {
     private final String name;
     private final String login;
     private final String email;
-    private final LocalDateTime createDate;
+    private LocalDateTime createDate;
 
     public User(String name, String login, String email, LocalDateTime createDate) {
         this(0, name, login, email, createDate);
@@ -45,6 +45,10 @@ public class User {
 
     public LocalDateTime getCreateDate() {
         return this.createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
     }
 
     @Override

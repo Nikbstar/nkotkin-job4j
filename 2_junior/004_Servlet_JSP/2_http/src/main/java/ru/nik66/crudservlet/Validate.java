@@ -12,5 +12,5 @@ public interface Validate {
     boolean delete(int id);
     List<User> findAll();
     User findById(int id);
-
+    void clear();
 }

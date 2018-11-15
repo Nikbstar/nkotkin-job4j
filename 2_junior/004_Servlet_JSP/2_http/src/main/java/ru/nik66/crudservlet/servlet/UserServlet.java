@@ -18,12 +18,6 @@ public class UserServlet extends HttpServlet {
     private final Validate logic = ValidateService.getInstance();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.sendRedirect(String.format("%s/list", req.getContextPath()));
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         String action = req.getParameter("action");
@@ -32,6 +26,6 @@ public class UserServlet extends HttpServlet {
         if (!result) {
             throw new ServletException("Something wrong!");
         }
-        doGet(req, resp);
+        resp.sendRedirect(String.format("%s/list.jsp", req.getContextPath()));
     }
 }

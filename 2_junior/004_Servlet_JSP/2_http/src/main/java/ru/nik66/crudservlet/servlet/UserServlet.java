@@ -26,6 +26,6 @@ public class UserServlet extends HttpServlet {
         if (!result) {
             throw new ServletException("Something wrong!");
         }
-        resp.sendRedirect(String.format("%s/list.jsp", req.getContextPath()));
+        resp.sendRedirect(String.format("%s/list", req.getContextPath()));
     }
 }

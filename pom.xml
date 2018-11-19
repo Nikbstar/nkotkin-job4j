@@ -80,6 +80,18 @@
       <artifactId>commons-dbcp2</artifactId>
       <version>2.5.0</version>
     </dependency>
+    <!-- jstl for jsp -->
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <!-- tegs for jstl -->
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+    </dependency>
 
   </dependencies>
 

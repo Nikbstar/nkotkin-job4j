@@ -1,7 +1,7 @@
 package ru.nik66.crudservlet;
 
 import ru.nik66.crudservlet.model.User;
-import ru.nik66.crudservlet.store.MemoryStore;
+import ru.nik66.crudservlet.store.DbStore;
 import ru.nik66.crudservlet.store.Store;
 
 import java.time.LocalDateTime;
@@ -12,18 +12,13 @@ public class ValidateService implements Validate {
 
     private static final ValidateService INSTANCE = new ValidateService();
 
-    private final Store persistent = MemoryStore.getInstance();
+    private final Store persistent = DbStore.getInstance();
 
     private ValidateService() {
     }
 
     public static ValidateService getInstance() {
         return INSTANCE;
-    }
-
-    private LocalDateTime parseToLocalDateTime(String dateTime) {
-        DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE_TIME;
-        return (dateTime.isEmpty()) ? LocalDateTime.now() : LocalDateTime.parse(dateTime, dtf);
     }
 
     private boolean isWrongEmail(String email) {

@@ -71,4 +71,9 @@ public class User {
     public int hashCode() {
         return Objects.hash(this.id, this.name, this.login, this.email, this.createDate);
     }
+
+    @Override
+    public String toString() {
+        return "User{id=" + id + ", name='" + name + '\'' + ", login='" + login + '\'' + ", email='" + email + '\'' + ", createDate=" + createDate + '}';
+    }
 }

@@ -7,8 +7,8 @@
 <body>
 <form action="${pageContext.servletContext.contextPath}/" method="post">
     <label>
-        Name:
-        <input type="text" name="name"/>
+        Login:
+        <input type="text" name="login"/>
     </label>
     <label>
         Email:
@@ -23,9 +23,9 @@
         <th>Name</th>
         <th>Email</th>
     </tr>
-    <c:forEach items="${users}" var="user">
+    <c:forEach items="${requestScope.users}" var="user">
         <tr>
-            <td><c:out value="${user.name}" /></td>
+            <td><c:out value="${user.login}" /></td>
             <td><c:out value="${user.email}" /></td>
         </tr>
     </c:forEach>

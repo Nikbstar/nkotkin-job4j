@@ -1,5 +1,7 @@
 package ru.nik66.crudservlet.servlet;
 
+import ru.nik66.crudservlet.model.Role;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ public class CreateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("roles", Role.values());
         req.getRequestDispatcher(CREATE).forward(req, resp);
     }
 }

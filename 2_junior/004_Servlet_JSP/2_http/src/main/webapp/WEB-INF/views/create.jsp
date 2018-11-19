@@ -19,6 +19,20 @@
     </label>
     <br />
     <label>
+        Password:
+        <input type="password" name = "password" />
+    </label>
+    <br />
+    <label>
+        Role:
+        <select name="role">
+            <c:forEach items="${requestScope.roles}" var="rol">
+                <option value="${rol.name}"><c:out value="${rol.desc}" /> </option>
+            </c:forEach>
+        </select>
+    </label>
+    <br />
+    <label>
         Email:
         <input type="text" name="email" />
     </label>

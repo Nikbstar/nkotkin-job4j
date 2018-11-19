@@ -37,6 +37,8 @@ public class ActionType {
         return s -> this.logic.add(
                 this.params.get("name")[0],
                 this.params.get("login")[0],
+                this.params.get("password")[0],
+                this.params.get("role")[0],
                 this.params.get("email")[0]
         );
     }
@@ -46,6 +48,8 @@ public class ActionType {
                 Integer.parseInt(this.params.get("id")[0]),
                 this.params.get("name")[0],
                 this.params.get("login")[0],
+                this.params.get("password")[0],
+                this.params.get("role")[0],
                 this.params.get("email")[0]
         );
     }

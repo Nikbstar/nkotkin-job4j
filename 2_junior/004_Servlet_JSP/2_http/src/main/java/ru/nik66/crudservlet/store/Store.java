@@ -11,7 +11,6 @@ public interface Store {
     void delete(User user);
     List<User> findAll();
     User findById(int id);
-
     void clear();
 
 }

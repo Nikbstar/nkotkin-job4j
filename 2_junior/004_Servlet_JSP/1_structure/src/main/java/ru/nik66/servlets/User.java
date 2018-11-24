@@ -28,17 +28,19 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         User user = (User) o;
-        return Objects.equals(login, user.login) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password);
+        return Objects.equals(this.login, user.login) && Objects.equals(this.email, user.email) && Objects.equals(this.password, user.password);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(login, email, password);
+        return Objects.hash(this.login, this.email, this.password);
     }
 }

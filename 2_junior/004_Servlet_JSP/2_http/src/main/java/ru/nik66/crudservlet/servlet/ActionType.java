@@ -1,6 +1,7 @@
 package ru.nik66.crudservlet.servlet;
 
 import ru.nik66.crudservlet.Validate;
+import ru.nik66.crudservlet.ValidateService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +12,10 @@ public class ActionType {
     private final Map<String, Function<String, Boolean>> dispath = new HashMap<>();
 
     private final Map<String, String[]> params;
-    private final Validate logic;
+    private final Validate logic = ValidateService.getInstance();
 
-    public ActionType(Map<String, String[]> params, Validate logic) {
+    public ActionType(Map<String, String[]> params) {
         this.params = params;
-        this.logic = logic;
     }
 
     public ActionType init() {

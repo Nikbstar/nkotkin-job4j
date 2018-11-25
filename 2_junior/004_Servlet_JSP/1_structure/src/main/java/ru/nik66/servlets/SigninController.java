@@ -20,9 +20,7 @@ public class SigninController extends HttpServlet {
         String password = req.getParameter("password");
         if (UserStorage.getInstance().isCredential(login, password)) {
             HttpSession session =  req.getSession();
-            synchronized (session) {
-                session.setAttribute("login", login);
-            }
+            session.setAttribute("login", login);
             resp.sendRedirect(String.format("%s/", req.getContextPath()));
         } else {
             req.setAttribute("error", "Credential invalid");

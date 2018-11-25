@@ -27,4 +27,12 @@
         <servlet-name>SigninController</servlet-name>
         <url-pattern>/signin</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>JsonController</servlet-name>
+        <servlet-class>ru.nik66.servlets.JsonController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonController</servlet-name>
+        <url-pattern>/json</url-pattern>
+    </servlet-mapping>
 </web-app>

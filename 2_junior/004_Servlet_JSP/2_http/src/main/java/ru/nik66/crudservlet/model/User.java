@@ -8,17 +8,21 @@ public class User {
     private int id;
     private final String name;
     private final String login;
+    private final String password;
+    private final Role role;
     private final String email;
     private LocalDateTime createDate;
 
-    public User(String name, String login, String email, LocalDateTime createDate) {
-        this(0, name, login, email, createDate);
+    public User(String name, String login, String password, Role role, String email, LocalDateTime createDate) {
+        this(0, name, login, password, role, email, createDate);
     }
 
-    public User(int id, String name, String login, String email, LocalDateTime createDate) {
+    public User(int id, String name, String login, String password, Role role, String email, LocalDateTime createDate) {
         this.id = id;
         this.name = name;
         this.login = login;
+        this.password = password;
+        this.role = role;
         this.email = email;
         this.createDate = createDate;
     }
@@ -37,6 +41,14 @@ public class User {
 
     public String getLogin() {
         return this.login;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public Role getRole() {
+        return this.role;
     }
 
     public String getEmail() {
@@ -63,13 +75,14 @@ public class User {
         return this.id == user.id
                 && Objects.equals(this.name, user.name)
                 && Objects.equals(this.login, user.login)
+                && Objects.equals(this.password, user.password)
                 && Objects.equals(this.email, user.email)
                 && Objects.equals(this.createDate, user.createDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.login, this.email, this.createDate);
+        return Objects.hash(this.id, this.name, this.login, this.password, this.email, this.createDate);
     }
 
     @Override

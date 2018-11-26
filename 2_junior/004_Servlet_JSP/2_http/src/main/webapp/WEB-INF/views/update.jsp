@@ -16,7 +16,21 @@
     <br />
     <label>
         Login:
-        <input type="text" name="login" value="${requestScope.login}" />
+        <input ${requestScope.sessionRole == 'ADMIN' ? '' : 'disabled'} type="text" name="login" value="${requestScope.login}" />
+    </label>
+    <br />
+    <label>
+        Password:
+        <input type="password" name="password" value="${requestScope.password}" />
+    </label>
+    <br />
+    <label>
+        Role:
+        <select name="role" ${requestScope.sessionRole == 'ADMIN' ? '' : 'disabled'}>
+            <c:forEach items="${requestScope.roles}" var="rol">
+                <option value="${rol.name}" ${rol.name == requestScope.role ? 'selected' : ''}><c:out value="${rol.desc}" /> </option>
+            </c:forEach>
+        </select>
     </label>
     <br />
     <label>

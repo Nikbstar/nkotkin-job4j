@@ -3,6 +3,7 @@ package ru.nik66.crudservlet.store;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.nik66.crudservlet.model.Role;
 import ru.nik66.crudservlet.model.User;
 
 import java.time.LocalDateTime;
@@ -29,7 +30,7 @@ public class MemoryStoreTest {
 
     @Test
     public void whenAddUserAndFindAllUsers() {
-        User user = new User("Nikolay", "nik", "nik@e.mail", LocalDateTime.now());
+        User user = new User("Nikolay", "nik", "p", Role.ADMIN, "nik@e.mail", LocalDateTime.now());
         this.store.add(user);
         List<User> actual = this.store.findAll();
         List<User> excepted = Collections.singletonList(user);
@@ -38,9 +39,9 @@ public class MemoryStoreTest {
 
     @Test
     public void whenUpdateUser() {
-        User user = new User("Nikolay", "nik", "nik@e.mail", LocalDateTime.now());
+        User user = new User("Nikolay", "nik", "p", Role.ADMIN, "nik@e.mail", LocalDateTime.now());
         this.store.add(user);
-        User newUser = new User(user.getId(), "Newby", "nb", "non@mm.nn", null);
+        User newUser = new User(user.getId(), "Newby", "nb", "p", Role.ADMIN, "non@mm.nn", null);
         this.store.update(newUser);
         List<User> actual = this.store.findAll();
         List<User> excepted = Collections.singletonList(newUser);
@@ -49,8 +50,8 @@ public class MemoryStoreTest {
 
     @Test
     public void whenDeleteUser() {
-        User first = new User("Nikolay", "nik", "nik@e.mail", LocalDateTime.now());
-        User second = new User("Newby", "nb", "non@mm.nn", LocalDateTime.now());
+        User first = new User("Nikolay", "nik", "p", Role.USER, "nik@e.mail", LocalDateTime.now());
+        User second = new User("Newby", "nb", "p", Role.USER, "non@mm.nn", LocalDateTime.now());
         this.store.add(first);
         this.store.add(second);
         this.store.delete(second);
@@ -61,7 +62,7 @@ public class MemoryStoreTest {
 
     @Test
     public void whenFindByIdUser() {
-        User user = new User("Nikolay", "nik", "nik@e.mail", LocalDateTime.now());
+        User user = new User("Nikolay", "nik", "p", Role.ADMIN, "nik@e.mail", LocalDateTime.now());
         this.store.add(user);
         User actual = this.store.findById(user.getId());
         User expected = user;

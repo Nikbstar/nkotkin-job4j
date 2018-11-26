@@ -13,7 +13,19 @@ public class UserStorage {
         this.users.add(user);
     }
 
+    public boolean isCredential(String login, String password) {
+        boolean result = false;
+        for (User user : users) {
+            if (login.equals(user.getLogin()) && password.equals(user.getPassword())) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
     private UserStorage() {
+        this.users.add(new User("root", "root@root", "root"));
     }
 
     public List<User> getUsers() {

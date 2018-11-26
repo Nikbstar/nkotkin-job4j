@@ -3,6 +3,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.nik66.servlets.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>UsersControllerServlet</servlet-name>
         <servlet-class>ru.nik66.servlets.UsersController</servlet-class>
@@ -10,5 +18,21 @@
     <servlet-mapping>
         <servlet-name>UsersControllerServlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SigninController</servlet-name>
+        <servlet-class>ru.nik66.servlets.SigninController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninController</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>JsonController</servlet-name>
+        <servlet-class>ru.nik66.servlets.JsonController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonController</servlet-name>
+        <url-pattern>/json</url-pattern>
     </servlet-mapping>
 </web-app>

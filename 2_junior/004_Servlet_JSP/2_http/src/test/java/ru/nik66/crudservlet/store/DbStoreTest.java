@@ -2,6 +2,7 @@ package ru.nik66.crudservlet.store;
 
 import org.junit.After;
 import org.junit.Test;
+import ru.nik66.crudservlet.model.Role;
 import ru.nik66.crudservlet.model.User;
 
 import java.time.LocalDateTime;
@@ -23,10 +24,10 @@ public class DbStoreTest {
     @Test
     public void whenUpdate() {
         LocalDateTime now = LocalDateTime.now();
-        User user = new User("a", "a", "a", now);
+        User user = new User("a", "a", "a", Role.ADMIN, "a", now);
         this.store.add(user);
         int id = this.store.findAll().get(0).getId();
-        User updatedUser = new User(id, "b", "b", "b", now);
+        User updatedUser = new User(id, "b", "b", "b", Role.ADMIN, "b", now);
         this.store.update(updatedUser);
         List<User> actual = this.store.findAll();
         List<User> expected = Collections.singletonList(updatedUser);
@@ -35,10 +36,10 @@ public class DbStoreTest {
 
     @Test
     public void whenDelete() {
-        User user = new User("a", "a", "a", LocalDateTime.now());
+        User user = new User("a", "a", "a", Role.ADMIN, "a", LocalDateTime.now());
         this.store.add(user);
         int id = this.store.findAll().get(0).getId();
-        this.store.delete(new User(id, null, null, null, null));
+        this.store.delete(new User(id, null, null, null, null, null, null));
         List<User> actual = this.store.findAll();
         List<User> expected = Collections.emptyList();
         assertThat(actual, is(expected));
@@ -47,11 +48,11 @@ public class DbStoreTest {
     @Test
     public void whenFindById() {
         LocalDateTime now = LocalDateTime.now();
-        User user = new User("a", "a", "a", now);
+        User user = new User("a", "a", "a", Role.ADMIN, "a", now);
         this.store.add(user);
         int id = this.store.findAll().get(0).getId();
         User actual = this.store.findById(id);
-        User expected = new User(id, "a", "a", "a", now);
+        User expected = new User(id, "a", "a", "a", Role.ADMIN, "a", now);
         assertThat(actual, is(expected));
     }
 }

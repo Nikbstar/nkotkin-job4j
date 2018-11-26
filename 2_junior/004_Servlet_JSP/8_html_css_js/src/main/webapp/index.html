@@ -9,6 +9,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            var fname = $('#fname').val();
+            var lname = $('#lname').val();
+            var desc = $('#desc').val();
+            var result = '';
+            if (fname === '') {
+                result += " First name is not filled."
+            }
+            if (lname === '') {
+                result += " Last name is not filled."
+            }
+            if (desc === '') {
+                result += " Description is not filled."
+            }
+            if (result !== '') {
+                alert("Please fill in all fields:" + result);
+            }
+            return false;
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -19,8 +40,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">User</span>
             </div>
-            <input type="text" class="form-control" placeholder="First Name" name="fname">
-            <input type="text" class="form-control" placeholder="Last Name" name="lname">
+            <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname">
+            <input type="text" class="form-control" placeholder="Last Name" name="lname" id="lname">
         </div>
         <div class="form-check-inline">
             <label class="form-check-label" for="male"> Sex:
@@ -36,7 +57,7 @@
             <label for="desc">Description:</label>
             <textarea class="form-control" rows="5" id="desc" name="desc"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="return validate();">Submit</button>
     </form>
     <hr />
     <div class="container">

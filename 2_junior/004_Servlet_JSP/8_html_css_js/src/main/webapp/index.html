@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>User form</h2>
+    <br />
+    <form action="/" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">User</span>
+            </div>
+            <input type="text" class="form-control" placeholder="First Name" name="fname">
+            <input type="text" class="form-control" placeholder="Last Name" name="lname">
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label" for="male"> Sex:
+                <input type="radio" class="form-check-input" id="male" name="sex" value="male" checked>Male
+            </label>
+        </div>
+        <div class="form-check-inline">
+            <label class="form-check-label" for="female">
+                <input type="radio" class="form-check-input" id="female" name="sex" value="female">Female
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="desc">Description:</label>
+            <textarea class="form-control" rows="5" id="desc" name="desc"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr />
+    <div class="container">
+        <table id="table-users" class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Sex</th>
+                <th>Description</th>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

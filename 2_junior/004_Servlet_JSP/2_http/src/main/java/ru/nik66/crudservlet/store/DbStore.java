@@ -3,6 +3,8 @@ package ru.nik66.crudservlet.store;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.nik66.crudservlet.model.City;
+import ru.nik66.crudservlet.model.Country;
 import ru.nik66.crudservlet.model.Role;
 import ru.nik66.crudservlet.model.User;
 
@@ -69,6 +71,8 @@ public class DbStore implements Store {
             statement.setString(4, user.getRole().name());
             statement.setString(5, user.getEmail());
             statement.setTimestamp(6, Timestamp.valueOf(user.getCreateDate()));
+            statement.setString(7, user.getCountry().name());
+            statement.setString(8, user.getCity().name());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
@@ -86,7 +90,9 @@ public class DbStore implements Store {
             statement.setString(3, user.getPassword());
             statement.setString(4, user.getRole().name());
             statement.setString(5, user.getEmail());
-            statement.setInt(6, user.getId());
+            statement.setString(6, user.getCountry().getName());
+            statement.setString(7, user.getCity().getName());
+            statement.setInt(8, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
@@ -124,7 +130,9 @@ public class DbStore implements Store {
                         rs.getString("password"),
                         Role.valueOf(rs.getString("role")),
                         rs.getString("email"),
-                        rs.getTimestamp("date").toLocalDateTime())
+                        rs.getTimestamp("date").toLocalDateTime(),
+                        Country.valueOf(rs.getString("country")),
+                        City.valueOf(rs.getString("city")))
                 );
             }
             rs.close();
@@ -151,7 +159,9 @@ public class DbStore implements Store {
                         rs.getString("password"),
                         Role.valueOf(rs.getString("role")),
                         rs.getString("email"),
-                        rs.getTimestamp("date").toLocalDateTime()
+                        rs.getTimestamp("date").toLocalDateTime(),
+                        Country.valueOf(rs.getString("country")),
+                        City.valueOf(rs.getString("city"))
                 );
             }
             rs.close();
@@ -174,12 +184,12 @@ public class DbStore implements Store {
     }
 
     enum SQLUsers {
-        CREATE("CREATE TABLE users (id INTEGER PRIMARY KEY, name VARCHAR(255), login VARCHAR(255), password VARCHAR(255), role VARCHAR(255), email VARCHAR(255), date DATETIME)"),
-        INSERT("INSERT INTO users (name, login, password, role, email, date) VALUES ((?), (?), (?), (?), (?), (?))"),
-        UPDATE("UPDATE users SET name = (?), login = (?), password = (?), role = (?), email = (?) WHERE id = (?)"),
+        CREATE("CREATE TABLE users (id INTEGER PRIMARY KEY, name VARCHAR(255), login VARCHAR(255), password VARCHAR(255), role VARCHAR(255), email VARCHAR(255), date DATETIME, country VARCHAR(255), city VARCHAR(255))"),
+        INSERT("INSERT INTO users (name, login, password, role, email, date, country, city) VALUES ((?), (?), (?), (?), (?), (?), (?), (?))"),
+        UPDATE("UPDATE users SET name = (?), login = (?), password = (?), role = (?), email = (?), country = (?), city = (?) WHERE id = (?)"),
         DELETE_ID("DELETE FROM users WHERE id = (?)"),
-        SELECT_ALL("SELECT id, name, login, password, role, email, date FROM users"),
-        SELECT_ID("SELECT id, name, login, password, role, email, date FROM users WHERE id = (?)"),
+        SELECT_ALL("SELECT id, name, login, password, role, email, date, country, city FROM users"),
+        SELECT_ID("SELECT id, name, login, password, role, email, date, country, city FROM users WHERE id = (?)"),
         DELETE_ALL("DELETE FROM users");
 
         String query;

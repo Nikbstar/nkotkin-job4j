@@ -39,7 +39,9 @@ public class ActionType {
                 this.params.get("login")[0],
                 this.params.get("password")[0],
                 this.params.get("role")[0],
-                this.params.get("email")[0]
+                this.params.get("email")[0],
+                this.params.get("country")[0],
+                this.params.get("city")[0]
         );
     }
 
@@ -50,7 +52,9 @@ public class ActionType {
                 this.params.get("login")[0],
                 this.params.get("password")[0],
                 this.params.get("role")[0],
-                this.params.get("email")[0]
+                this.params.get("email")[0],
+                this.params.get("country")[0],
+                this.params.get("city")[0]
         );
     }
 

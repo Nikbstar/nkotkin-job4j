@@ -1,5 +1,6 @@
 package ru.nik66.crudservlet.servlet;
 
+import ru.nik66.crudservlet.model.Country;
 import ru.nik66.crudservlet.model.Role;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ public class CreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("roles", Role.values());
+        req.setAttribute("countries", Country.values());
         req.getRequestDispatcher(CREATE).forward(req, resp);
     }
 }

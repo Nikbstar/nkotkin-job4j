@@ -12,12 +12,14 @@ public class User {
     private final Role role;
     private final String email;
     private LocalDateTime createDate;
+    private Country country;
+    private City city;
 
-    public User(String name, String login, String password, Role role, String email, LocalDateTime createDate) {
-        this(0, name, login, password, role, email, createDate);
+    public User(String name, String login, String password, Role role, String email, LocalDateTime createDate, Country country, City city) {
+        this(0, name, login, password, role, email, createDate, country, city);
     }
 
-    public User(int id, String name, String login, String password, Role role, String email, LocalDateTime createDate) {
+    public User(int id, String name, String login, String password, Role role, String email, LocalDateTime createDate, Country country, City city) {
         this.id = id;
         this.name = name;
         this.login = login;
@@ -25,6 +27,8 @@ public class User {
         this.role = role;
         this.email = email;
         this.createDate = createDate;
+        this.country = country;
+        this.city = city;
     }
 
     public int getId() {
@@ -63,6 +67,22 @@ public class User {
         this.createDate = createDate;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -72,21 +92,16 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return this.id == user.id
-                && Objects.equals(this.name, user.name)
-                && Objects.equals(this.login, user.login)
-                && Objects.equals(this.password, user.password)
-                && Objects.equals(this.email, user.email)
-                && Objects.equals(this.createDate, user.createDate);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(login, user.login) && Objects.equals(password, user.password) && role == user.role && Objects.equals(email, user.email) && Objects.equals(createDate, user.createDate) && country == user.country && city == user.city;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.login, this.password, this.email, this.createDate);
+        return Objects.hash(id, name, login, password, role, email, createDate, country, city);
     }
 
     @Override
     public String toString() {
-        return "User{id=" + id + ", name='" + name + '\'' + ", login='" + login + '\'' + ", email='" + email + '\'' + ", createDate=" + createDate + '}';
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", login='" + login + '\'' + ", password='" + password + '\'' + ", role=" + role + ", email='" + email + '\'' + ", createDate=" + createDate + ", country=" + country + ", city=" + city + "}";
     }
 }

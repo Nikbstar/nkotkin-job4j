@@ -45,6 +45,14 @@
         <url-pattern>/update</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>CountryServlet</servlet-name>
+        <servlet-class>ru.nik66.crudservlet.servlet.CountryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CountryServlet</servlet-name>
+        <url-pattern>/country</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AuthServlet</servlet-name>
         <servlet-class>ru.nik66.crudservlet.servlet.AuthServlet</servlet-class>
     </servlet>

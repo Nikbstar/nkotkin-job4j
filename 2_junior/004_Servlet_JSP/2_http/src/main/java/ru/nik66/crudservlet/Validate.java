@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface Validate {
 
-    boolean add(String name, String login, String password, String role, String email);
-    boolean update(int id, String name, String login, String password, String role, String email);
+    boolean add(String name, String login, String password, String role, String email, String country, String city);
+    boolean update(int id, String name, String login, String password, String role, String email, String country, String city);
     boolean delete(int id);
     List<User> findAll();
     User findById(int id);

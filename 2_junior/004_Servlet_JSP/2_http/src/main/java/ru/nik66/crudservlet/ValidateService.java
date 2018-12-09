@@ -1,7 +1,10 @@
 package ru.nik66.crudservlet;
 
+import ru.nik66.crudservlet.model.City;
+import ru.nik66.crudservlet.model.Country;
 import ru.nik66.crudservlet.model.Role;
 import ru.nik66.crudservlet.model.User;
+import ru.nik66.crudservlet.store.CountryStore;
 import ru.nik66.crudservlet.store.DbStore;
 import ru.nik66.crudservlet.store.MemoryStore;
 import ru.nik66.crudservlet.store.Store;
@@ -17,7 +20,7 @@ public class ValidateService implements Validate {
     private final Store persistent = MemoryStore.getInstance();
 
     private ValidateService() {
-        persistent.add(new User("root", "root", "root", Role.ADMIN, "root@email.ru", LocalDateTime.now()));
+        persistent.add(new User("root", "root", "root", Role.ADMIN, "root@email.ru", LocalDateTime.now(), Country.USA, City.NY));
     }
 
     public static ValidateService getInstance() {
@@ -26,6 +29,11 @@ public class ValidateService implements Validate {
 
     private boolean isWrongEmail(String email) {
         return !email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+    }
+
+    private boolean isCityInCountry(String country, String city) {
+
+        return CountryStore.getInstance().isCityInCountry(Country.valueOf(country), City.valueOf(city));
     }
 
     private void checkLoginContent(int id, String login) {
@@ -45,14 +53,17 @@ public class ValidateService implements Validate {
     }
 
     @Override
-    public boolean add(String name, String login, String password, String role, String email) {
+    public boolean add(String name, String login, String password, String role, String email, String country, String city) {
         if (this.isWrongEmail(email)) {
             throw new IllegalArgumentException("Wrong email address!");
         }
         checkLoginContent(0, login);
         checkEmailContent(0, email);
+        if (!this.isCityInCountry(country, city)) {
+            throw new IllegalArgumentException(String.format("%s is not in %s", city, country));
+        }
         boolean result = false;
-        User user = new User(name, login, password, Role.valueOf(role), email, LocalDateTime.now());
+        User user = new User(name, login, password, Role.valueOf(role), email, LocalDateTime.now(), Country.valueOf(country), City.valueOf(city));
         if (!this.persistent.findAll().contains(user)) {
             this.persistent.add(user);
             result = true;
@@ -61,16 +72,19 @@ public class ValidateService implements Validate {
     }
 
     @Override
-    public boolean update(int id, String name, String login, String password, String role, String email) {
+    public boolean update(int id, String name, String login, String password, String role, String email, String country, String city) {
         if (this.isWrongEmail(email)) {
             throw new IllegalArgumentException("Wrong email address!");
         }
         checkLoginContent(id, login);
         checkEmailContent(id, email);
+        if (!this.isCityInCountry(country, city)) {
+            throw new IllegalArgumentException(String.format("%s is not in %s", city, country));
+        }
         boolean result = false;
         User oldUser = this.persistent.findById(id);
         if (oldUser != null) {
-            User user = new User(id, name, login, password, Role.valueOf(role), email, oldUser.getCreateDate());
+            User user = new User(id, name, login, password, Role.valueOf(role), email, oldUser.getCreateDate(), Country.valueOf(country), City.valueOf(city));
             this.persistent.update(user);
             result = true;
         }

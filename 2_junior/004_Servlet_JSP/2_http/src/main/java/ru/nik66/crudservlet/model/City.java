@@ -1,13 +1,15 @@
 package ru.nik66.crudservlet.model;
 
-public enum Role {
+public enum City {
 
-    ADMIN("Administrator"),
-    USER("User");
+    NY("New York"),
+    WN("Washington"),
+    PARIS("Paris"),
+    MILAN("Milan");
 
     private String desc;
 
-    Role(String desc) {
+    City(String desc) {
         this.desc = desc;
     }
 

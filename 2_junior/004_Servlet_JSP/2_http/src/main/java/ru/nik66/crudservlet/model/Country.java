@@ -1,13 +1,13 @@
 package ru.nik66.crudservlet.model;
 
-public enum Role {
+public enum Country {
 
-    ADMIN("Administrator"),
-    USER("User");
+    USA("United States of America"),
+    FR("France");
 
     private String desc;
 
-    Role(String desc) {
+    Country(String desc) {
         this.desc = desc;
     }
 

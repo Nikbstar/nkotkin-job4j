@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.nik66.crudservlet.Validate;
 import ru.nik66.crudservlet.ValidateService;
+import ru.nik66.crudservlet.model.City;
+import ru.nik66.crudservlet.model.Country;
 import ru.nik66.crudservlet.model.Role;
 import ru.nik66.crudservlet.model.User;
 import ru.nik66.crudservlet.store.MemoryStore;
@@ -42,6 +44,8 @@ public class UserServletTest {
         params.put("password", new String[]{"qqq"});
         params.put("role", new String[]{"USER"});
         params.put("email", new String[]{"qwe@qwe.qw"});
+        params.put("country", new String[]{"USA"});
+        params.put("city", new String[]{"NY"});
         UserServlet servlet = new UserServlet();
         HttpServletRequest req = mock(HttpServletRequest.class);
         HttpServletResponse resp = mock(HttpServletResponse.class);
@@ -54,7 +58,7 @@ public class UserServletTest {
 
     @Test
     public void whenUpdateUser() throws Exception {
-        User oldUser = new User("aaa", "aaa", "aaa", Role.USER, "aaa@a.a", LocalDateTime.now());
+        User oldUser = new User("aaa", "aaa", "aaa", Role.USER, "aaa@a.a", LocalDateTime.now(), Country.USA, City.NY);
         MemoryStore.getInstance().add(oldUser);
         Map<String, String[]> params = new HashMap<>();
         params.put("id", new String[]{String.valueOf(oldUser.getId())});
@@ -64,6 +68,8 @@ public class UserServletTest {
         params.put("password", new String[]{"aaa"});
         params.put("role", new String[]{"USER"});
         params.put("email", new String[]{"aaa@a.a"});
+        params.put("country", new String[]{"USA"});
+        params.put("city", new String[]{"NY"});
         UserServlet servlet = new UserServlet();
         HttpServletRequest req = mock(HttpServletRequest.class);
         HttpServletResponse resp = mock(HttpServletResponse.class);
@@ -76,7 +82,7 @@ public class UserServletTest {
 
     @Test
     public void whenDeleteUser() throws Exception {
-        User user = new User("aaa", "aaa", "aaa", Role.USER, "aaa@a.a", LocalDateTime.now());
+        User user = new User("aaa", "aaa", "aaa", Role.USER, "aaa@a.a", LocalDateTime.now(), Country.USA, City.NY);
         MemoryStore.getInstance().add(user);
         Map<String, String[]> params = new HashMap<>();
         params.put("id", new String[]{String.valueOf(user.getId())});
